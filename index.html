@@ -8,76 +8,156 @@
 </head>
 <body>
 
-    <header>
-        <h1>DRIP STREET</h1>
-        <p>Streetwear made for your style.</p>
+    <header class="navbar">
+        <a href="#" class="logo">DRIP<span>STREET.</span></a>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#products">Shop</a>
+        </nav>
+        <div class="cart">🛒 Cart: <span id="cart-count">0</span></div>
     </header>
 
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#shop">Shop</a>
-        <a href="#about">About Us</a>
-        <a href="#contact">Contact</a>
-    </nav>
-
     <section class="hero" id="home">
-        <p class="tagline">YOUR STYLE. YOUR RULES.</p>
-        <h2>LEVEL UP YOUR LOOK.</h2>
-        <p>Discover fresh streetwear made for everyday life.</p>
-        <a class="button" href="#shop">SHOP NOW</a>
+        <p class="tagline">NEW SEASON · NEW STYLE</p>
+        <h1>WEAR YOUR<br><span>OWN DRIP.</span></h1>
+        <p class="hero-text">Streetwear made for your everyday style.</p>
+        <a href="#products" class="shop-button">SHOP COLLECTION ↓</a>
     </section>
 
-    <section class="shop" id="shop">
-        <h2>OUR COLLECTION</h2>
-        <p>Find your next favourite outfit.</p>
-
-        <div class="products">
-            <div class="product">
-                <div class="product-image hoodie">HOODIE</div>
-                <h3>Street Hoodie</h3>
-                <p>€39.99</p>
-                <button onclick="alert('Thanks for your interest!')">
-                    View Product
-                </button>
+    <main class="products-section" id="products">
+        <div class="section-heading">
+            <div>
+                <p class="tagline">FIND YOUR STYLE</p>
+                <h2>THE COLLECTION</h2>
             </div>
-
-            <div class="product">
-                <div class="product-image tshirt">T-SHIRT</div>
-                <h3>Classic T-Shirt</h3>
-                <p>€19.99</p>
-                <button onclick="alert('Thanks for your interest!')">
-                    View Product
-                </button>
-            </div>
-
-            <div class="product">
-                <div class="product-image jeans">JEANS</div>
-                <h3>Baggy Jeans</h3>
-                <p>€34.99</p>
-                <button onclick="alert('Thanks for your interest!')">
-                    View Product
-                </button>
-            </div>
+            <p class="product-count">9 PRODUCTS</p>
         </div>
-    </section>
 
-    <section class="about" id="about">
-        <h2>ABOUT DRIP STREET</h2>
-        <p>
-            DRIP STREET is all about confidence, comfort and street style.
-            Wear what you love and create your own look.
-        </p>
-    </section>
+        <div class="product-grid">
 
-    <section class="contact" id="contact">
-        <h2>GET IN TOUCH</h2>
-        <p>Email: dripstreet@example.com</p>
-        <p>Follow your style. Stay original.</p>
-    </section>
+            <!-- HOODIES -->
+            <article class="product-card">
+                <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=700&q=85" alt="Black streetwear hoodie">
+                <p class="category">HOODIES</p>
+                <h3>Essential Black Hoodie</h3>
+                <div class="product-bottom">
+                    <span class="price">€29.99</span>
+                    <button class="add-button" data-name="Essential Black Hoodie">Add to Cart +</button>
+                </div>
+            </article>
+
+            <article class="product-card">
+                <img src="https://images.unsplash.com/photo-1578681994506-b8f463449011?auto=format&fit=crop&w=700&q=85" alt="Casual grey hoodie">
+                <p class="category">HOODIES</p>
+                <h3>Urban Grey Hoodie</h3>
+                <div class="product-bottom">
+                    <span class="price">€34.99</span>
+                    <button class="add-button" data-name="Urban Grey Hoodie">Add to Cart +</button>
+                </div>
+            </article>
+
+            <article class="product-card">
+                <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=700&q=85" alt="Oversized streetwear hoodie">
+                <p class="category">HOODIES</p>
+                <h3>Oversized Drip Hoodie</h3>
+                <div class="product-bottom">
+                    <span class="price">€39.99</span>
+                    <button class="add-button" data-name="Oversized Drip Hoodie">Add to Cart +</button>
+                </div>
+            </article>
+
+            <!-- T-SHIRTS -->
+            <article class="product-card">
+                <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=85" alt="Classic white T-shirt">
+                <p class="category">T-SHIRTS</p>
+                <h3>Classic White Tee</h3>
+                <div class="product-bottom">
+                    <span class="price">€14.99</span>
+                    <button class="add-button" data-name="Classic White Tee">Add to Cart +</button>
+                </div>
+            </article>
+
+            <article class="product-card">
+                <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=700&q=85" alt="Black casual T-shirt">
+                <p class="category">T-SHIRTS</p>
+                <h3>Street Black Tee</h3>
+                <div class="product-bottom">
+                    <span class="price">€17.99</span>
+                    <button class="add-button" data-name="Street Black Tee">Add to Cart +</button>
+                </div>
+            </article>
+
+            <article class="product-card">
+                <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=700&q=85" alt="Fashion streetwear T-shirt">
+                <p class="category">T-SHIRTS</p>
+                <h3>Graphic Street Tee</h3>
+                <div class="product-bottom">
+                    <span class="price">€19.99</span>
+                    <button class="add-button" data-name="Graphic Street Tee">Add to Cart +</button>
+                </div>
+            </article>
+
+            <!-- JEANS -->
+            <article class="product-card">
+                <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=700&q=85" alt="Blue denim jeans">
+                <p class="category">JEANS</p>
+                <h3>Classic Blue Denim</h3>
+                <div class="product-bottom">
+                    <span class="price">€34.99</span>
+                    <button class="add-button" data-name="Classic Blue Denim">Add to Cart +</button>
+                </div>
+            </article>
+
+            <article class="product-card">
+                <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=700&q=85" alt="Modern denim jeans">
+                <p class="category">JEANS</p>
+                <h3>Urban Fit Jeans</h3>
+                <div class="product-bottom">
+                    <span class="price">€39.99</span>
+                    <button class="add-button" data-name="Urban Fit Jeans">Add to Cart +</button>
+                </div>
+            </article>
+
+            <article class="product-card">
+                <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=700&q=85" alt="Street style denim jeans">
+                <p class="category">JEANS</p>
+                <h3>Baggy Street Jeans</h3>
+                <div class="product-bottom">
+                    <span class="price">€44.99</span>
+                    <button class="add-button" data-name="Baggy Street Jeans">Add to Cart +</button>
+                </div>
+            </article>
+
+        </div>
+    </main>
 
     <footer>
-        <p>© 2026 DRIP STREET. All rights reserved.</p>
+        <a href="#home" class="logo">DRIP<span>STREET.</span></a>
+        <p>YOUR STYLE. YOUR RULES.</p>
+        <p class="copyright">© 2026 DRIP STREET. All rights reserved.</p>
     </footer>
+
+    <script>
+        let cartCount = 0;
+
+        const cartDisplay = document.getElementById("cart-count");
+        const buttons = document.querySelectorAll(".add-button");
+
+        buttons.forEach(function(button) {
+            button.addEventListener("click", function() {
+                cartCount++;
+                cartDisplay.textContent = cartCount;
+
+                const originalText = button.textContent;
+                button.textContent = "ADDED ✓";
+
+                setTimeout(function() {
+                    button.textContent = originalText;
+                }, 1000);
+            });
+        });
+    </script>
 
 </body>
 </html>
+
