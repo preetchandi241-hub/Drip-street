@@ -160,4 +160,83 @@
 
 </body>
 </html>
+<!-- DEMO CHECKOUT -->
+<div class="checkout-overlay" id="checkout-overlay">
+    <div class="checkout-box">
+        <div class="checkout-heading">
+            <div>
+                <p class="checkout-tag">DRIP STREET</p>
+                <h2>Checkout</h2>
+            </div>
+            <button type="button" id="close-checkout" class="close-cart"
+                aria-label="Close checkout">✕</button>
+        </div>
+
+        <div class="demo-notice">
+            DEMO MODE — NO REAL PAYMENT WILL BE TAKEN
+        </div>
+
+        <form id="checkout-form">
+            <h3>Delivery details</h3>
+
+            <label for="customer-name">Full name</label>
+            <input id="customer-name" name="customerName"
+                type="text" placeholder="Your full name" required>
+
+            <label for="customer-email">Email address</label>
+            <input id="customer-email" name="customerEmail"
+                type="email" placeholder="you@example.com" required>
+
+            <label for="customer-address">Delivery address</label>
+            <textarea id="customer-address" name="customerAddress"
+                placeholder="Street, postcode and city" required></textarea>
+
+            <h3 class="payment-title">Choose payment method</h3>
+
+            <label class="payment-option">
+                <input type="radio" name="payment" value="Card" required>
+                <span>💳 Card <small>Visa / Mastercard</small></span>
+            </label>
+
+            <label class="payment-option">
+                <input type="radio" name="payment" value="PayPal">
+                <span>🅿️ PayPal <small>Demo selection</small></span>
+            </label>
+
+            <label class="payment-option">
+                <input type="radio" name="payment" value="MB WAY">
+                <span>📱 MB WAY <small>Demo selection</small></span>
+            </label>
+
+            <label class="payment-option">
+                <input type="radio" name="payment" value="Multibanco">
+                <span>🏦 Multibanco <small>Demo selection</small></span>
+            </label>
+
+            <div class="checkout-total">
+                <span>Order total</span>
+                <strong>€<span id="checkout-total">0.00</span></strong>
+            </div>
+
+            <button type="submit" class="place-order">
+                Place Demo Order →
+            </button>
+
+            <p class="secure-note">
+                School project demonstration. No payment is processed.
+            </p>
+        </form>
+
+        <div id="order-success" class="order-success" hidden>
+            <div class="success-icon">✓</div>
+            <h2>Order placed!</h2>
+            <p id="success-message"></p>
+            <p class="secure-note">This is a demo confirmation.
+                No payment was taken and no order was sent to a shop.</p>
+            <button type="button" id="finish-order" class="place-order">
+                Back to shopping
+            </button>
+        </div>
+    </div>
+</div>
 
