@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DRIP STREET | Admin</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <a class="logo" href="index.html">DRIP <span>STREET</span></a>
+  <nav><a href="index.html">Storefront</a></nav>
+</header>
+
+<main id="shop">
+  <p>ADMIN DEMO</p>
+  <h1>Order Dashboard</h1>
+  <p>Test orders only. This page is not protected by a secure login.</p>
+
+  <h2>Recent Orders</h2>
+  <button id="refresh">Refresh Orders</button>
+  <div id="orders"></div>
+  <p id="no-orders">No orders yet. Place a test order in the shop first.</p>
+</main>
+
+<script>
+function loadOrders() {
+  const orders = JSON.parse(localStorage.getItem("dripOrders") || "[]");
+
+  document.getElementById("no-orders").hidden = orders.length > 0;
+
+  document.getElementById("orders").innerHTML = orders.map(order => `
+    <article class="product-card" style="padding:20px;margin:15px 0">
+      <h2>${order.id}</h2>
+      <p>${order.date}</p>
+      <p><strong>Customer:</strong> ${order.customer}</p>
+      <p><strong>Email:</strong> ${order.email}</p>
+      <p><strong>Address:</strong> ${order.address}</p>
+      <p><strong>Payment:</strong> ${order.payment}</p>
+      <p><strong>Payment status:</strong> ${order.paymentStatus}</p>
+      <p><strong>Items:</strong> ${order.items.map(i =>
+        `${i.name} × ${i.qty}`).join(", ")}</p>
+      <h3>Total: €${order.total.toFixed(2)}</h3>
+    </article>
+  `).join("");
+}
+
+document.getElementById("refresh").onclick = loadOrders;
+loadOrders();
+</script>
+</body>
+</html>
