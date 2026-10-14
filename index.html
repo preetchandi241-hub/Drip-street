@@ -1,115 +1,28 @@
+ <div id="product-modal" class="hidden">
+  <div class="product-modal-content">
+    <button id="product-modal-close" type="button">✕ Close</button>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DRIP STREET | Streetwear</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <div class="product-detail-layout">
+      <img id="detail-image" src="" alt="Product photo">
 
-<header>
-  <a class="logo" href="#">DRIP <span>STREET</span></a>
+      <div class="product-detail-info">
+        <p id="detail-category"></p>
+        <h2 id="detail-name"></h2>
+        <h3 id="detail-price"></h3>
+        <p id="detail-description"></p>
 
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#shop">Shop</a>
-    <a href="#about">About</a>
-  </nav>
+        <label for="detail-size">Choose size:</label>
+        <select id="detail-size">
+          <option value="S">S</option>
+          <option value="M" selected>M</option>
+          <option value="L">L</option>
+          <option value="XL">XL</option>
+        </select>
 
-  <div class="header-actions">
-    <input id="search" type="search" placeholder="Search products...">
-    <button id="cart-open">Cart (<span id="cart-count">0</span>)</button>
-  </div>
-</header>
-
-<main>
-  <section class="hero" id="home">
-    <p>PREMIUM STREETWEAR</p>
-    <h1>WEAR YOUR<br><span>ATTITUDE.</span></h1>
-    <p>Fresh drops. Bold styles. Streetwear for everyday legends.</p>
-    <a class="button" href="#shop">SHOP NOW ↗</a>
-  </section>
-
-  <section class="categories">
-    <button data-category="All">All Products</button>
-    <button data-category="T-Shirts">T-Shirts</button>
-    <button data-category="Hoodies">Hoodies</button>
-    <button data-category="Jeans & Trousers">Jeans</button>
-    <button data-category="Shoes">Shoes</button>
-    <button data-category="Accessories">Accessories</button>
-  </section>
-
-  <section id="shop">
-    <div class="section-heading">
-      <h2>OUR PRODUCTS <span id="product-count">(24)</span></h2>
-      <select id="sort">
-        <option value="featured">Featured</option>
-        <option value="low">Price: Low to High</option>
-        <option value="high">Price: High to Low</option>
-        <option value="name">Name A-Z</option>
-      </select>
+        <button id="detail-add" type="button">
+          ADD TO CART +
+        </button>
+      </div>
     </div>
-
-    <div id="products" class="product-grid"></div>
-    <p id="empty-state" hidden>No products found.</p>
-  </section>
-
-  <section id="about" class="about">
-    <h2>YOUR STYLE. YOUR RULES.</h2>
-    <p>Streetwear essentials made for everyday confidence.</p>
-  </section>
-</main>
-
-<footer>
-  <p>© 2026 DRIP STREET</p>
-  <a href="admin.html">Admin Dashboard</a>
-  <p>Demo store — real payments are not connected.</p>
-</footer>
-
-<div id="backdrop" class="backdrop hidden"></div>
-
-<aside id="cart-drawer" class="cart-drawer">
-  <button id="cart-close" class="close-button">✕</button>
-  <h2>Your Cart</h2>
-  <div id="cart-items"></div>
-  <h3>Total: <span id="cart-total">€0.00</span></h3>
-  <button id="checkout-open" class="button">Checkout</button>
-</aside>
-
-<div id="checkout-modal" class="modal hidden">
-  <form id="checkout-form">
-    <button type="button" id="checkout-close" class="close-button">✕</button>
-    <h2>Checkout</h2>
-    <p>Test checkout only. No money will be charged.</p>
-
-    <label>Full Name
-      <input name="name" required>
-    </label>
-
-    <label>Email
-      <input name="email" type="email" required>
-    </label>
-
-    <label>Delivery Address
-      <textarea name="address" required></textarea>
-    </label>
-
-    <label>Payment Method
-      <select name="payment">
-        <option>Test checkout</option>
-        <option>MB WAY (not connected)</option>
-        <option>Card (not connected)</option>
-        <option>PayPal (not connected)</option>
-      </select>
-    </label>
-
-    <p>Order total: <strong id="checkout-total">€0.00</strong></p>
-    <button class="button" type="submit">Place Test Order</button>
-  </form>
+  </div>
 </div>
-
-<script src="app.js"></script>
-</body>
-</html>
