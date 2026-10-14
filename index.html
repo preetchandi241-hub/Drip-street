@@ -1,332 +1,115 @@
- 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DRIP STREET | Streetwear</title>
-
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:Arial,sans-serif;background:#101010;color:white}
-button,input,textarea{font:inherit}
-button{cursor:pointer}
-.navbar{display:flex;justify-content:space-between;align-items:center;gap:15px;padding:20px 7%;border-bottom:1px solid #333;flex-wrap:wrap}
-.logo{font-size:25px;font-weight:900;color:white;text-decoration:none}
-.logo span,.lime{color:#c6ff00}
-nav{display:flex;gap:22px}
-nav a{color:white;text-decoration:none}
-.cart-btn{background:transparent;color:#c6ff00;border:1px solid #c6ff00;padding:12px 16px;border-radius:5px}
-.hero{padding:90px 7%;background:linear-gradient(120deg,#181818,#303030)}
-.tagline{color:#c6ff00;font-size:12px;letter-spacing:3px;margin-bottom:15px}
-.hero h1{font-size:clamp(48px,9vw,90px);line-height:.98;letter-spacing:-3px}
-.hero h1 span{color:#c6ff00}
-.hero p:not(.tagline){color:#bbb;margin:22px 0}
-.shop-btn{display:inline-block;padding:15px 22px;background:#c6ff00;color:#111;text-decoration:none;font-weight:bold}
-section.products{padding:60px 7%}
-.section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:30px;gap:15px}
-.section-head h2{font-size:clamp(27px,5vw,42px)}
-.section-head p{color:#aaa;font-size:12px}
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
-.card{background:#1a1a1a;padding-bottom:18px;overflow:hidden}
-.card img{display:block;width:100%;height:300px;object-fit:cover;background:#292929}
-.category{color:#c6ff00;font-size:10px;letter-spacing:2px;margin:17px 15px 8px}
-.card h3{font-size:16px;margin:0 15px 18px}
-.product-bottom{margin:0 15px;display:flex;justify-content:space-between;align-items:center;gap:10px}
-.price{font-weight:bold;white-space:nowrap}
-.add-btn{background:transparent;color:#c6ff00;border:1px solid #c6ff00;padding:10px;font-size:11px;font-weight:bold}
-.add-btn:hover,.cart-btn:hover{background:#c6ff00;color:#111}
-footer{text-align:center;border-top:1px solid #333;padding:35px 15px;color:#aaa;font-size:12px;line-height:2}
-.overlay{display:none;position:fixed;inset:0;background:#000b;z-index:10}
-.overlay.open{display:block}
-.panel{position:fixed;right:-450px;top:0;width:min(420px,100%);height:100dvh;background:#181818;z-index:11;padding:24px;transition:right .25s;display:flex;flex-direction:column}
-.panel.open{right:0}
-.panel-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #333;padding-bottom:18px}
-.close{background:none;border:0;color:white;font-size:25px}
-#cart-items{flex:1;overflow:auto;padding:15px 0}
-.cart-item{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid #333;padding:15px 0}
-.cart-item p{color:#c6ff00;margin-top:7px;font-size:13px}
-.remove{background:transparent;color:#ff7777;border:1px solid #555;padding:8px;align-self:center}
-.cart-footer{border-top:1px solid #333;padding-top:18px}
-.cart-footer h3{margin-bottom:16px}
-.primary{display:block;width:100%;background:#c6ff00;color:#111;border:0;border-radius:4px;padding:14px;font-weight:bold}
-.secondary{display:block;width:100%;margin-top:10px;background:transparent;color:#c6ff00;border:1px solid #c6ff00;padding:12px}
-.checkout-overlay{display:none;position:fixed;inset:0;z-index:20;background:#000d;padding:15px;overflow:auto;align-items:center;justify-content:center}
-.checkout-overlay.open{display:flex}
-.checkout-box{width:100%;max-width:520px;max-height:95dvh;overflow:auto;background:#181818;border:1px solid #444;border-radius:12px;padding:25px}
-.checkout-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
-.notice{padding:12px;background:#292e16;border:1px solid #697d18;color:#d9ff62;font-size:11px;text-align:center;margin-bottom:18px}
-#checkout-form label:not(.payment){display:block;font-size:13px;margin:14px 0 7px}
-#checkout-form input[type=text],#checkout-form input[type=email],#checkout-form textarea{width:100%;padding:12px;background:#101010;border:1px solid #444;color:white;border-radius:4px}
-#checkout-form textarea{min-height:65px}
-.checkout-box h3{margin:18px 0 12px}
-.payment{display:flex;align-items:center;gap:12px;padding:13px;border:1px solid #444;border-radius:5px;margin:8px 0;cursor:pointer}
-.payment:has(input:checked){border-color:#c6ff00;background:#25291b}
-.payment input{accent-color:#c6ff00}
-.payment small{display:block;color:#aaa;margin-top:4px}
-.total{display:flex;justify-content:space-between;border-top:1px solid #444;padding:20px 0;margin-top:18px}
-.total strong{font-size:23px;color:#c6ff00}
-.small-note{text-align:center;color:#aaa;font-size:11px;line-height:1.6;margin-top:12px}
-.success{text-align:center;padding:25px 0}
-.success-icon{font-size:35px;color:#c6ff00;margin-bottom:15px}
-[hidden]{display:none!important}
-@media(max-width:750px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.card img{height:240px}.hero{padding:70px 6%}section.products{padding:45px 5%}}
-@media(max-width:480px){.navbar{padding:16px 5%}.logo{font-size:21px}nav{gap:13px}nav a{font-size:13px}.grid{gap:12px}.card img{height:180px}.card h3{font-size:14px;margin-left:10px;margin-right:10px}.category{margin-left:10px}.product-bottom{margin:0 10px;align-items:stretch;flex-direction:column}.add-btn{width:100%}.hero h1{letter-spacing:-2px}.checkout-box{padding:18px}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DRIP STREET | Streetwear</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-<header class="navbar">
-<a class="logo" href="#home">DRIP<span class="lime">STREET.</span></a>
-<nav><a href="#home">Home</a><a href="#products">Shop</a></nav>
-<button class="cart-btn" id="cart-button">🛒 Cart (<span id="cart-count">0</span>)</button>
+
+<header>
+  <a class="logo" href="#">DRIP <span>STREET</span></a>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#shop">Shop</a>
+    <a href="#about">About</a>
+  </nav>
+
+  <div class="header-actions">
+    <input id="search" type="search" placeholder="Search products...">
+    <button id="cart-open">Cart (<span id="cart-count">0</span>)</button>
+  </div>
 </header>
 
-<section class="hero" id="home">
-<p class="tagline">NEW SEASON · NEW STYLE</p>
-<h1>WEAR YOUR<br><span>OWN DRIP.</span></h1>
-<p>Streetwear made for your everyday style.</p>
-<a href="#products" class="shop-btn">SHOP COLLECTION ↓</a>
-</section>
+<main>
+  <section class="hero" id="home">
+    <p>PREMIUM STREETWEAR</p>
+    <h1>WEAR YOUR<br><span>ATTITUDE.</span></h1>
+    <p>Fresh drops. Bold styles. Streetwear for everyday legends.</p>
+    <a class="button" href="#shop">SHOP NOW ↗</a>
+  </section>
 
-<section class="products" id="products">
-<div class="section-head"><div><p class="tagline">FIND YOUR STYLE</p><h2>THE COLLECTION</h2></div><p>9 PRODUCTS</p></div>
-<div class="grid">
+  <section class="categories">
+    <button data-category="All">All Products</button>
+    <button data-category="T-Shirts">T-Shirts</button>
+    <button data-category="Hoodies">Hoodies</button>
+    <button data-category="Jeans & Trousers">Jeans</button>
+    <button data-category="Shoes">Shoes</button>
+    <button data-category="Accessories">Accessories</button>
+  </section>
 
-<article class="card">
-<img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=700&q=85" alt="Hoodie">
-<p class="category">HOODIES</p><h3>Essential Black Hoodie</h3>
-<div class="product-bottom"><span class="price">€29.99</span><button class="add-btn" data-name="Essential Black Hoodie">Add to Cart +</button></div>
-</article>
-<article class="card">
-<img src="https://images.unsplash.com/photo-1578681994506-b8f463449011?auto=format&fit=crop&w=700&q=85" alt="Grey hoodie">
-<p class="category">HOODIES</p><h3>Urban Grey Hoodie</h3>
-<div class="product-bottom"><span class="price">€34.99</span><button class="add-btn" data-name="Urban Grey Hoodie">Add to Cart +</button></div>
-</article>
-<article class="card">
-<img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=700&q=85" alt="Oversized hoodie">
-<p class="category">HOODIES</p><h3>Oversized Drip Hoodie</h3>
-<div class="product-bottom"><span class="price">€39.99</span><button class="add-btn" data-name="Oversized Drip Hoodie">Add to Cart +</button></div>
-</article>
+  <section id="shop">
+    <div class="section-heading">
+      <h2>OUR PRODUCTS <span id="product-count">(24)</span></h2>
+      <select id="sort">
+        <option value="featured">Featured</option>
+        <option value="low">Price: Low to High</option>
+        <option value="high">Price: High to Low</option>
+        <option value="name">Name A-Z</option>
+      </select>
+    </div>
 
-<article class="card">
-<img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=85" alt="White T-shirt">
-<p class="category">T-SHIRTS</p><h3>Classic White Tee</h3>
-<div class="product-bottom"><span class="price">€14.99</span><button class="add-btn" data-name="Classic White Tee">Add to Cart +</button></div>
-</article>
-<article class="card">
-<img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=700&q=85" alt="Black T-shirt">
-<p class="category">T-SHIRTS</p><h3>Street Black Tee</h3>
-<div class="product-bottom"><span class="price">€17.99</span><button class="add-btn" data-name="Street Black Tee">Add to Cart +</button></div>
-</article>
-<article class="card">
-<img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=700&q=85" alt="Street T-shirt">
-<p class="category">T-SHIRTS</p><h3>Graphic Street Tee</h3>
-<div class="product-bottom"><span class="price">€19.99</span><button class="add-btn" data-name="Graphic Street Tee">Add to Cart +</button></div>
-</article>
+    <div id="products" class="product-grid"></div>
+    <p id="empty-state" hidden>No products found.</p>
+  </section>
 
-<article class="card">
-<img src="https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=700&q=85" alt="Blue jeans">
-<p class="category">JEANS</p><h3>Classic Blue Denim</h3>
-<div class="product-bottom"><span class="price">€34.99</span><button class="add-btn" data-name="Classic Blue Denim">Add to Cart +</button></div>
-</article>
-<article class="card">
-<img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=700&q=85" alt="Denim jeans">
-<p class="category">JEANS</p><h3>Urban Fit Jeans</h3>
-<div class="product-bottom"><span class="price">€39.99</span><button class="add-btn" data-name="Urban Fit Jeans">Add to Cart +</button></div>
-</article>
-<article class="card">
-<img src="https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=700&q=85" alt="Baggy jeans">
-<p class="category">JEANS</p><h3>Baggy Street Jeans</h3>
-<div class="product-bottom"><span class="price">€44.99</span><button class="add-btn" data-name="Baggy Street Jeans">Add to Cart +</button></div>
-</article>
+  <section id="about" class="about">
+    <h2>YOUR STYLE. YOUR RULES.</h2>
+    <p>Streetwear essentials made for everyday confidence.</p>
+  </section>
+</main>
 
-</div>
-</section>
+<footer>
+  <p>© 2026 DRIP STREET</p>
+  <a href="admin.html">Admin Dashboard</a>
+  <p>Demo store — real payments are not connected.</p>
+</footer>
 
-<footer><a class="logo" href="#home">DRIP<span class="lime">STREET.</span></a><p>YOUR STYLE. YOUR RULES.</p><p>© 2026 DRIP STREET · SCHOOL PROJECT DEMO</p></footer>
+<div id="backdrop" class="backdrop hidden"></div>
 
-<div class="overlay" id="cart-overlay"></div>
-<aside class="panel" id="cart-panel">
-<div class="panel-head"><h2>Your Cart 🛒</h2><button class="close" id="close-cart">×</button></div>
-<div id="cart-items"><p>Your cart is empty.</p></div>
-<div class="cart-footer">
-<h3>Total: €<span id="cart-total">0.00</span></h3>
-<button class="primary" id="checkout-button">Proceed to Checkout →</button>
-<button class="secondary" id="clear-cart">Clear Cart</button>
-</div>
+<aside id="cart-drawer" class="cart-drawer">
+  <button id="cart-close" class="close-button">✕</button>
+  <h2>Your Cart</h2>
+  <div id="cart-items"></div>
+  <h3>Total: <span id="cart-total">€0.00</span></h3>
+  <button id="checkout-open" class="button">Checkout</button>
 </aside>
 
-<div class="checkout-overlay" id="checkout-overlay">
-<div class="checkout-box">
-<div class="checkout-head"><div><p class="tagline">DRIP STREET</p><h2>Checkout</h2></div><button class="close" id="close-checkout">×</button></div>
-<div class="notice">DEMO MODE — NO REAL PAYMENT WILL BE TAKEN</div>
+<div id="checkout-modal" class="modal hidden">
+  <form id="checkout-form">
+    <button type="button" id="checkout-close" class="close-button">✕</button>
+    <h2>Checkout</h2>
+    <p>Test checkout only. No money will be charged.</p>
 
-<form id="checkout-form">
-<h3>Delivery details</h3>
-<label for="customer-name">Full name</label>
-<input id="customer-name" name="customerName" type="text" placeholder="Your name" required>
-<label for="customer-email">Email address</label>
-<input id="customer-email" name="customerEmail" type="email" placeholder="you@example.com" required>
-<label for="customer-address">Delivery address</label>
-<textarea id="customer-address" name="customerAddress" placeholder="Street, postcode and city" required></textarea>
+    <label>Full Name
+      <input name="name" required>
+    </label>
 
-<h3>Choose payment method</h3>
-<label class="payment"><input type="radio" name="payment" value="Card" required><span>💳 Card <small>Visa / Mastercard demo</small></span></label>
-<label class="payment"><input type="radio" name="payment" value="PayPal"><span>🅿️ PayPal <small>Demo selection</small></span></label>
-<label class="payment"><input type="radio" name="payment" value="MB WAY"><span>📱 MB WAY <small>Demo selection</small></span></label>
-<label class="payment"><input type="radio" name="payment" value="Multibanco"><span>🏦 Multibanco <small>Demo selection</small></span></label>
+    <label>Email
+      <input name="email" type="email" required>
+    </label>
 
-<div class="total"><span>Order total</span><strong>€<span id="checkout-total">0.00</span></strong></div>
-<button type="submit" class="primary">Place Demo Order →</button>
-<p class="small-note">School project demonstration only. No payment is processed.</p>
-</form>
+    <label>Delivery Address
+      <textarea name="address" required></textarea>
+    </label>
 
-<div class="success" id="order-success" hidden>
-<div class="success-icon">✓</div><h2>Order placed!</h2>
-<p id="success-message"></p>
-<p class="small-note">This is a demo confirmation. No payment was taken and no order was sent to a shop.</p>
-<button id="finish-order" class="primary">Back to shopping</button>
-</div>
-</div>
+    <label>Payment Method
+      <select name="payment">
+        <option>Test checkout</option>
+        <option>MB WAY (not connected)</option>
+        <option>Card (not connected)</option>
+        <option>PayPal (not connected)</option>
+      </select>
+    </label>
+
+    <p>Order total: <strong id="checkout-total">€0.00</strong></p>
+    <button class="button" type="submit">Place Test Order</button>
+  </form>
 </div>
 
-<script>
-let cart = [];
-const $ = id => document.getElementById(id);
-const cartPanel = $("cart-panel");
-const cartOverlay = $("cart-overlay");
-const checkoutOverlay = $("checkout-overlay");
-const checkoutForm = $("checkout-form");
-const orderSuccess = $("order-success");
-
-function money(value) { return value.toFixed(2); }
-function total() { return cart.reduce((sum, item) => sum + item.price * item.quantity, 0); }
-
-function renderCart() {
-  $("cart-count").textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
-  $("cart-total").textContent = money(total());
-  $("checkout-total").textContent = money(total());
-  const area = $("cart-items");
-  area.replaceChildren();
-
-  if (!cart.length) {
-    const message = document.createElement("p");
-    message.textContent = "Your cart is empty.";
-    area.append(message);
-    return;
-  }
-
-  cart.forEach((item, index) => {
-    const row = document.createElement("div");
-    row.className = "cart-item";
-    const details = document.createElement("div");
-    const name = document.createElement("h4");
-    const price = document.createElement("p");
-    const remove = document.createElement("button");
-
-    name.textContent = item.name;
-    price.textContent = "€" + money(item.price) + " × " + item.quantity;
-    remove.textContent = "Remove";
-    remove.className = "remove";
-    remove.type = "button";
-    remove.addEventListener("click", () => {
-      cart.splice(index, 1);
-      renderCart();
-    });
-
-    details.append(name, price);
-    row.append(details, remove);
-    area.append(row);
-  });
-}
-
-function openCart() {
-  cartPanel.classList.add("open");
-  cartOverlay.classList.add("open");
-}
-function closeCart() {
-  cartPanel.classList.remove("open");
-  cartOverlay.classList.remove("open");
-}
-
-$("cart-button").addEventListener("click", openCart);
-$("close-cart").addEventListener("click", closeCart);
-cartOverlay.addEventListener("click", closeCart);
-
-$("clear-cart").addEventListener("click", () => {
-  cart = [];
-  renderCart();
-});
-
-document.querySelectorAll(".add-btn").forEach(button => {
-  button.addEventListener("click", () => {
-    const card = button.closest(".card");
-    const name = button.dataset.name;
-    const price = Number(card.querySelector(".price").textContent.replace("€", ""));
-    const existing = cart.find(item => item.name === name);
-
-    if (existing) existing.quantity++;
-    else cart.push({name, price, quantity: 1});
-
-    renderCart();
-    button.textContent = "ADDED ✓";
-    setTimeout(() => button.textContent = "Add to Cart +", 1000);
-  });
-});
-
-$("checkout-button").addEventListener("click", () => {
-  if (!cart.length) {
-    alert("Your cart is empty. Add some clothes first!");
-    return;
-  }
-  closeCart();
-  checkoutForm.hidden = false;
-  orderSuccess.hidden = true;
-  $("checkout-total").textContent = money(total());
-  checkoutOverlay.classList.add("open");
-});
-
-$("close-checkout").addEventListener("click", () => checkoutOverlay.classList.remove("open"));
-checkoutOverlay.addEventListener("click", event => {
-  if (event.target === checkoutOverlay) checkoutOverlay.classList.remove("open");
-});
-
-checkoutForm.addEventListener("submit", event => {
-  event.preventDefault();
-  if (!cart.length) {
-    alert("Your cart is empty!");
-    checkoutOverlay.classList.remove("open");
-    return;
-  }
-
-  const data = new FormData(checkoutForm);
-  const name = data.get("customerName").trim();
-  const payment = data.get("payment");
-  if (!name || !payment) {
-    alert("Please complete all required fields.");
-    return;
-  }
-  const orderNumber = "DRIP-" + Math.floor(100000 + Math.random() * 900000);
-  $("success-message").textContent =
-    "Thank you, " + name + "! Demo order " + orderNumber +
-    " totals €" + money(total()) + ". Payment method: " + payment + ".";
-
-  checkoutForm.hidden = true;
-  orderSuccess.hidden = false;
-  cart = [];
-  renderCart();
-});
-
-$("finish-order").addEventListener("click", () => {
-  checkoutOverlay.classList.remove("open");
-  checkoutForm.reset();
-  checkoutForm.hidden = false;
-  orderSuccess.hidden = true;
-});
-
-renderCart();
-</script>
+<script src="app.js"></script>
 </body>
 </html>
