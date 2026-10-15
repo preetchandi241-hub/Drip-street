@@ -1,335 +1,283 @@
- const imageUrls = [
-  "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=85",
-  "https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=700&q=85",
-  "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=700&q=85",
-  "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=85",
-  "https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=700&q=85",
-  "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=700&q=85",
-  "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=700&q=85",
-  "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=700&q=85",
-  "https://images.unsplash.com/photo-1578681994506-b8f463449011?auto=format&fit=crop&w=700&q=85",
-  "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=700&q=85",
-  "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=700&q=85",
-  "https://images.unsplash.com/photo-1578681994506-b8f463449011?auto=format&fit=crop&w=700&q=85",
-  "https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=700&q=85",
-  "https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=700&q=85",
-  "https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=700&q=85",
-  "https://images.unsplash.com/photo-1552902865-b72c031ac5ea?auto=format&fit=crop&w=700&q=85",
-  "https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=700&q=85",
-  "https://images.unsplash.com/photo-1552902865-b72c031ac5ea?auto=format&fit=crop&w=700&q=85",
-  "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=85",
-  "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=85",
-  "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=85",
-  "https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=700&q=85",
-  "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=700&q=85",
-  "https://images.unsplash.com/photo-1576871337622-98d48d1cf531?auto=format&fit=crop&w=700&q=85"
+ const photo = id =>
+  `https://images.unsplash.com/${id}?auto=format&fit=crop&w=800&q=85`;
+const products = [
+  {id:1,name:'Essential Boxy Tee',category:'T-Shirts',price:19.99,tag:'BESTSELLER',image:photo('photo-1521572163474-6864f9cf17ab'),desc:'A relaxed everyday tee with a clean shape and easy streetwear fit.'},
+  {id:2,name:'Heavyweight White Tee',category:'T-Shirts',price:22.99,tag:'CORE',image:photo('photo-1503341504253-dff4815485f1'),desc:'A simple wardrobe essential made for repeat wear.'},
+  {id:3,name:'Graphic Street Tee',category:'T-Shirts',price:24.99,tag:'NEW',image:photo('photo-1523381210434-271e8be1f52b'),desc:'An expressive streetwear staple for everyday outfits.'},
+  {id:4,name:'Relaxed Black Tee',category:'T-Shirts',price:19.99,tag:'CORE',image:photo('photo-1562157873-818bc0726f68'),desc:'A versatile black tee with a relaxed silhouette.'},
+  {id:5,name:'Vintage Wash Tee',category:'T-Shirts',price:25.99,tag:'NEW',image:photo('photo-1503342217505-b0a15ec3261c'),desc:'A casual washed look with a vintage-inspired feel.'},
+  {id:6,name:'Everyday Logo Tee',category:'T-Shirts',price:21.99,tag:'CORE',image:photo('photo-1618354691373-d851c5c3a990'),desc:'Minimal logo style that works with almost anything.'},
+  {id:7,name:'Classic Pullover Hoodie',category:'Hoodies',price:44.99,tag:'BESTSELLER',image:photo('photo-1556821840-3a63f95609a7'),desc:'A cosy pullover layer for cooler days and late nights.'},
+  {id:8,name:'Oversized Hoodie',category:'Hoodies',price:49.99,tag:'NEW',image:photo('photo-1578681994506-b8f463449011'),desc:'An oversized silhouette made for laid-back styling.'},
+  {id:9,name:'Everyday Zip Hoodie',category:'Hoodies',price:46.99,tag:'CORE',image:photo('photo-1576566588028-4147f3842f27'),desc:'An easy zip layer to throw on and head out.'},
+  {id:10,name:'Street Crew Sweatshirt',category:'Hoodies',price:39.99,tag:'CORE',image:photo('photo-1554568218-0f1715e72254'),desc:'A clean crewneck for effortless everyday outfits.'},
+  {id:11,name:'Minimal Pullover',category:'Hoodies',price:42.99,tag:'NEW',image:photo('photo-1620799140408-edc6dcb6d633'),desc:'Simple shape, relaxed feel and easy layering.'},
+  {id:12,name:'Heavy Fleece Hoodie',category:'Hoodies',price:54.99,tag:'LIMITED',image:photo('photo-1565693413579-8a3a0a7b9f7e'),desc:'A heavier layer for a cosy streetwear look.'},
+  {id:13,name:'Relaxed Cargo Pants',category:'Trousers',price:39.99,tag:'BESTSELLER',image:photo('photo-1542272604-787c3835535d'),desc:'Utility-inspired trousers with a relaxed everyday fit.'},
+  {id:14,name:'Straight Leg Denim',category:'Trousers',price:44.99,tag:'CORE',image:photo('photo-1541099649105-f69ad21f3246'),desc:'Classic denim designed to pair with your favourite tees.'},
+  {id:15,name:'Utility Track Pants',category:'Trousers',price:34.99,tag:'NEW',image:photo('photo-1473966968600-fa801b869a1a'),desc:'Sport-inspired track pants for casual days.'},
+  {id:16,name:'Relaxed Fit Jeans',category:'Trousers',price:42.99,tag:'CORE',image:photo('photo-1552902865-b72c031ac5ea'),desc:'An easy denim shape for everyday wear.'},
+  {id:17,name:'Wide Leg Trousers',category:'Trousers',price:45.99,tag:'NEW',image:photo('photo-1548883354-7622d03aca27'),desc:'A wider silhouette with a modern streetwear feel.'},
+  {id:18,name:'Everyday Joggers',category:'Trousers',price:32.99,tag:'CORE',image:photo('photo-1517438476312-10d79c077509'),desc:'Comfort-first joggers for off-duty outfits.'},
+  {id:19,name:'Street Runner Sneakers',category:'Shoes',price:69.99,tag:'NEW',image:photo('photo-1542291026-7eec264c27ff'),desc:'Sporty everyday sneakers to finish your fit.'},
+  {id:20,name:'Minimal White Sneakers',category:'Shoes',price:64.99,tag:'CORE',image:photo('photo-1600185365483-26d7a4cc7519'),desc:'Clean low-profile shoes that go with almost everything.'},
+  {id:21,name:'Retro Court Sneakers',category:'Shoes',price:74.99,tag:'LIMITED',image:photo('photo-1525966222134-fcfa99b8ae77'),desc:'A retro-inspired sneaker look for daily rotation.'},
+  {id:22,name:'Everyday Cap',category:'Accessories',price:17.99,tag:'CORE',image:photo('photo-1588850561407-ed78c282e89b'),desc:'A simple cap to top off your outfit.'},
+  {id:23,name:'Utility Crossbody Bag',category:'Accessories',price:24.99,tag:'NEW',image:photo('photo-1553062407-98eeb64c6a62'),desc:'A practical hands-free bag for essentials on the move.'},
+  {id:24,name:'Classic Bucket Hat',category:'Accessories',price:19.99,tag:'CORE',image:photo('photo-1576871337622-98d48d1cf531'),desc:'A casual bucket hat for a laid-back finish.'}
 ];
 
-const products = [
-  ["Oversized Graphic Tee","T-Shirts",29.99],
-  ["Minimal Logo Tee","T-Shirts",24.99],
-  ["Washed Black Tee","T-Shirts",27.99],
-  ["Heavyweight Box Tee","T-Shirts",32.99],
-  ["Back Print Tee","T-Shirts",29.99],
-  ["Long Sleeve Logo Tee","T-Shirts",34.99],
-  ["Essential Hoodie","Hoodies",49.99],
-  ["Star Print Hoodie","Hoodies",54.99],
-  ["Crewneck Sweatshirt","Hoodies",44.99],
-  ["Zip-Up Hoodie","Hoodies",59.99],
-  ["Vintage Wash Hoodie","Hoodies",64.99],
-  ["Classic Pullover Hoodie","Hoodies",49.99],
-  ["Cargo Jeans","Jeans & Trousers",59.99],
-  ["Baggy Jeans","Jeans & Trousers",54.99],
-  ["Olive Cargo Pants","Jeans & Trousers",49.99],
-  ["Relaxed Sweatpants","Jeans & Trousers",39.99],
-  ["Wide-Leg Denim","Jeans & Trousers",62.99],
-  ["Black Utility Trousers","Jeans & Trousers",57.99],
-  ["Street Sneakers","Shoes",79.99],
-  ["Retro Court Sneakers","Shoes",74.99],
-  ["High-Top Street Shoes","Shoes",89.99],
-  ["Classic Cap","Accessories",19.99],
-  ["Crossbody Bag","Accessories",34.99],
-  ["Logo Beanie","Accessories",14.99]
-].map((p, i) => ({
-  id: i + 1,
-  name: p[0],
-  category: p[1],
-  price: p[2],
-  image: imageUrls[i],
-  description: "Discover the " + p[0] +
-    " from DRIP STREET. A stylish addition to your streetwear collection."
-}));
-
 const $ = id => document.getElementById(id);
-const euro = n => "€" + n.toFixed(2);
+const money = n => new Intl.NumberFormat('en-IE', {
+  style: 'currency',
+  currency: 'EUR'
+}).format(n);
 
-let category = "All";
-let selectedProduct = null;
-let cart = JSON.parse(localStorage.getItem("dripCart") || "[]");
+let cart = JSON.parse(localStorage.getItem('dripCart') || '[]');
 
-function saveCart() {
-  localStorage.setItem("dripCart", JSON.stringify(cart));
-}
+const saveCart = () =>
+  localStorage.setItem('dripCart', JSON.stringify(cart));
 
 function renderProducts() {
-  const searchText = $("search").value.toLowerCase();
+  const query = $('search').value.trim().toLowerCase();
+  const category = $('category-filter').value;
+  const sort = $('sort').value;
 
   let list = products.filter(p =>
-    (category === "All" || p.category === category) &&
-    p.name.toLowerCase().includes(searchText)
+    (category === 'All' || p.category === category) &&
+    `${p.name} ${p.category} ${p.desc}`.toLowerCase().includes(query)
   );
 
-  if ($("sort").value === "low") {
-    list.sort((a, b) => a.price - b.price);
-  }
-  if ($("sort").value === "high") {
-    list.sort((a, b) => b.price - a.price);
-  }
-  if ($("sort").value === "name") {
-    list.sort((a, b) => a.name.localeCompare(b.name));
-  }
+  if (sort === 'low') list.sort((a,b) => a.price - b.price);
+  if (sort === 'high') list.sort((a,b) => b.price - a.price);
+  if (sort === 'name') list.sort((a,b) => a.name.localeCompare(b.name));
 
-  $("product-count").textContent = `(${list.length})`;
-  $("empty-state").hidden = list.length > 0;
+  $('results-count').textContent =
+    `${list.length} ${list.length === 1 ? 'piece' : 'pieces'}`;
+  $('no-results').hidden = list.length !== 0;
 
-  $("products").innerHTML = list.map(p => `
+  $('product-grid').innerHTML = list.map(p => `
     <article class="product-card" data-product="${p.id}" tabindex="0">
-      <div class="product-art">
-        <img src="${p.image}" alt="${p.name}" loading="lazy"
-          onerror="this.alt='Product image unavailable'">
+      <div class="product-photo-wrap">
+        <img class="product-photo" src="${p.image}"
+          alt="${p.name}" loading="lazy">
+        <span class="product-tag">${p.tag}</span>
+        <button class="quick-add" data-quick="${p.id}"
+          type="button" aria-label="View ${p.name}">+</button>
       </div>
       <div class="product-info">
-        <h3>${p.name}</h3>
-        <p class="product-category">${p.category}</p>
-        <div class="product-bottom">
-          <span class="price">${euro(p.price)}</span>
-          <span class="rating">★ 4.8</span>
-        </div>
-        <button class="add-button" data-add="${p.id}" type="button">
-          ADD TO CART +
-        </button>
+        <div><h3>${p.name}</h3><p>${p.category}</p></div>
+        <span class="product-price">${money(p.price)}</span>
       </div>
     </article>
-  `).join("");
-}
-
-function openProduct(id) {
-  selectedProduct = products.find(p => p.id === id);
-  if (!selectedProduct) return;
-
-  $("detail-image").src = selectedProduct.image;
-  $("detail-image").alt = selectedProduct.name;
-  $("detail-category").textContent = selectedProduct.category;
-  $("detail-name").textContent = selectedProduct.name;
-  $("detail-price").textContent = euro(selectedProduct.price);
-  $("detail-description").textContent = selectedProduct.description;
-  $("detail-size").value = "M";
-  $("product-modal").classList.remove("hidden");
-}
-
-$("products").addEventListener("click", event => {
-  const addButton = event.target.closest("[data-add]");
-
-  if (addButton) {
-    event.stopPropagation();
-    addToCart(Number(addButton.dataset.add));
-    return;
-  }
-
-  const card = event.target.closest("[data-product]");
-  if (card) openProduct(Number(card.dataset.product));
-});
-
-$("products").addEventListener("keydown", event => {
-  if (event.key !== "Enter" && event.key !== " ") return;
-  if (event.target.closest("button")) return;
-
-  const card = event.target.closest("[data-product]");
-  if (card) {
-    event.preventDefault();
-    openProduct(Number(card.dataset.product));
-  }
-});
-
-$("product-modal-close").onclick = () => {
-  $("product-modal").classList.add("hidden");
-};
-
-$("product-modal").addEventListener("click", event => {
-  if (event.target.id === "product-modal") {
-    $("product-modal").classList.add("hidden");
-  }
-});
-
-$("detail-add").onclick = () => {
-  if (!selectedProduct) return;
-
-  const size = $("detail-size").value;
-  addToCart(selectedProduct.id, size);
-  $("product-modal").classList.add("hidden");
-};
-
-function addToCart(id, size = "M") {
-  const item = cart.find(x => x.id === id && x.size === size);
-
-  if (item) {
-    item.qty++;
-  } else {
-    cart.push({ id, qty: 1, size });
-  }
-
-  saveCart();
-  renderCart();
+  `).join('');
 }
 
 function renderCart() {
-  $("cart-count").textContent =
-    cart.reduce((n, x) => n + x.qty, 0);
+  const count = cart.reduce((s,i) => s + i.qty, 0);
+  const total = cart.reduce((s,i) =>
+    s + i.qty * products.find(p => p.id === i.id).price, 0);
 
-  $("cart-items").innerHTML = cart.map(item => {
-    const p = products.find(x => x.id === item.id);
-    if (!p) return "";
+  $('cart-count').textContent = count;
+  $('drawer-count').textContent = `(${count})`;
+  $('cart-total').textContent = money(total);
+  $('checkout-total').textContent = money(total);
 
+  $('cart-items').innerHTML = cart.length ? cart.map(i => {
+    const p = products.find(p => p.id === i.id);
     return `
-      <div class="cart-line">
-        <strong>${p.name}</strong>
-        <p>Size: ${item.size || "M"}</p>
-        <p>${euro(p.price)} each</p>
-        <button data-minus="${p.id}" data-size="${item.size || "M"}">−</button>
-        ${item.qty}
-        <button data-plus="${p.id}" data-size="${item.size || "M"}">+</button>
-        <button data-remove="${p.id}" data-size="${item.size || "M"}">Remove</button>
-      </div>
-    `;
-  }).join("") || "<p>Your cart is empty.</p>";
+      <div class="cart-row">
+        <img src="${p.image}" alt="${p.name}">
+        <div>
+          <h3>${p.name}</h3>
+          <p>Size: ${i.size} · ${money(p.price)}</p>
+          <div class="qty">
+            <button data-qty="${p.id}" data-change="-1">−</button>
+            <span>${i.qty}</span>
+            <button data-qty="${p.id}" data-change="1">+</button>
+          </div>
+        </div>
+        <button class="remove" data-remove="${p.id}">×</button>
+      </div>`;
+  }).join('') : '<p class="empty">Your bag is empty. Find something you love.</p>';
 
-  const total = cart.reduce((sum, item) => {
-    const p = products.find(x => x.id === item.id);
-    return sum + (p ? p.price * item.qty : 0);
-  }, 0);
-
-  $("cart-total").textContent = euro(total);
-  $("checkout-total").textContent = euro(total);
-
-  document.querySelectorAll("[data-minus]").forEach(button => {
-    button.onclick = () =>
-      changeQty(Number(button.dataset.minus), button.dataset.size, -1);
-  });
-
-  document.querySelectorAll("[data-plus]").forEach(button => {
-    button.onclick = () =>
-      changeQty(Number(button.dataset.plus), button.dataset.size, 1);
-  });
-
-  document.querySelectorAll("[data-remove]").forEach(button => {
-    button.onclick = () => {
-      const id = Number(button.dataset.remove);
-      const size = button.dataset.size;
-      cart = cart.filter(x => !(x.id === id && (x.size || "M") === size));
-      saveCart();
-      renderCart();
-    };
-  });
+  $('checkout-open').disabled = !cart.length;
+  $('checkout-open').style.opacity = cart.length ? '1' : '.45';
 }
 
-function changeQty(id, size, change) {
-  const item = cart.find(x => x.id === id && (x.size || "M") === size);
-  if (!item) return;
+function openCart() {
+  $('overlay').hidden = false;
+  $('cart-drawer').classList.add('open');
+  $('cart-drawer').setAttribute('aria-hidden', 'false');
+  document.body.classList.add('locked');
+}
 
-  item.qty += change;
+function closeCart() {
+  $('overlay').hidden = true;
+  $('cart-drawer').classList.remove('open');
+  $('cart-drawer').setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('locked');
+}
 
-  if (item.qty <= 0) {
-    cart = cart.filter(x => x !== item);
-  }
+function openProduct(id) {
+  const p = products.find(p => p.id === Number(id));
+  if (!p) return;
 
+  $('product-detail').innerHTML = `
+    <div class="detail-layout">
+      <img src="${p.image}" alt="${p.name}">
+      <div>
+        <p class="eyebrow">${p.tag} / ${p.category}</p>
+        <h2>${p.name}</h2>
+        <p class="detail-price">${money(p.price)}</p>
+        <p class="detail-copy">${p.desc}</p>
+        <label for="product-size">Choose your size</label>
+        <select id="product-size">
+          <option>S</option><option selected>M</option>
+          <option>L</option><option>XL</option>
+        </select>
+        <button class="button lime full" data-add="${p.id}" type="button">
+          Add to bag — ${money(p.price)}
+        </button>
+      </div>
+    </div>`;
+  $('product-dialog').showModal();
+}
+
+function addToCart(id, size = 'M') {
+  id = Number(id);
+  const found = cart.find(i => i.id === id && i.size === size);
+  if (found) found.qty++;
+  else cart.push({ id, qty: 1, size });
   saveCart();
   renderCart();
 }
 
-function openCart() {
-  $("cart-drawer").classList.add("open");
-  $("backdrop").classList.remove("hidden");
-}
-
-function closeCart() {
-  $("cart-drawer").classList.remove("open");
-  $("backdrop").classList.add("hidden");
-}
-
-document.querySelectorAll("[data-category]").forEach(button => {
-  button.onclick = () => {
-    category = button.dataset.category;
-
-    document.querySelectorAll("[data-category]").forEach(b =>
-      b.classList.toggle("active", b === button)
-    );
-
-    renderProducts();
-  };
-});
-
-$("search").addEventListener("input", renderProducts);
-$("sort").addEventListener("change", renderProducts);
-$("cart-open").onclick = openCart;
-$("cart-close").onclick = closeCart;
-$("backdrop").onclick = closeCart;
-
-$("checkout-open").onclick = () => {
-  if (!cart.length) {
-    alert("Your cart is empty!");
+document.addEventListener('click', e => {
+  const quick = e.target.closest('[data-quick]');
+  if (quick) {
+    e.stopPropagation();
+    openProduct(quick.dataset.quick);
     return;
   }
 
+  const card = e.target.closest('[data-product]');
+  if (card) {
+    openProduct(card.dataset.product);
+    return;
+  }
+
+  const add = e.target.closest('[data-add]');
+  if (add) {
+    addToCart(add.dataset.add, $('product-size').value);
+    $('product-dialog').close();
+    openCart();
+    return;
+  }
+
+  const qty = e.target.closest('[data-qty]');
+  if (qty) {
+    const item = cart.find(i => i.id === Number(qty.dataset.qty));
+    if (item) {
+      item.qty += Number(qty.dataset.change);
+      if (item.qty < 1) cart = cart.filter(i => i !== item);
+      saveCart();
+      renderCart();
+    }
+    return;
+  }
+
+  const remove = e.target.closest('[data-remove]');
+  if (remove) {
+    cart = cart.filter(i => i.id !== Number(remove.dataset.remove));
+    saveCart();
+    renderCart();
+    return;
+  }
+
+  const close = e.target.closest('[data-close]');
+  if (close) $(close.dataset.close).close();
+});
+
+$('product-grid').addEventListener('keydown', e => {
+  if ((e.key === 'Enter' || e.key === ' ') &&
+      e.target.matches('[data-product]')) {
+    e.preventDefault();
+    openProduct(e.target.dataset.product);
+  }
+});
+
+$('search').addEventListener('input', renderProducts);
+$('category-filter').addEventListener('change', renderProducts);
+$('sort').addEventListener('change', renderProducts);
+$('cart-open').addEventListener('click', openCart);
+$('cart-close').addEventListener('click', closeCart);
+$('continue-shopping').addEventListener('click', closeCart);
+$('overlay').addEventListener('click', closeCart);
+
+$('checkout-open').addEventListener('click', () => {
+  if (!cart.length) return;
   closeCart();
-  $("checkout-modal").classList.remove("hidden");
-};
+  $('checkout-message').hidden = true;
+  $('checkout-dialog').showModal();
+});
 
-$("checkout-close").onclick = () => {
-  $("checkout-modal").classList.add("hidden");
-};
+document.querySelectorAll('dialog').forEach(dialog => {
+  dialog.addEventListener('click', e => {
+    if (e.target === dialog) dialog.close();
+  });
+});
 
-$("checkout-form").addEventListener("submit", event => {
-  event.preventDefault();
+$('checkout-form').addEventListener('submit', e => {
+  e.preventDefault();
+  if (!cart.length) return;
 
-  const form = new FormData(event.target);
-
-  const total = cart.reduce((sum, item) => {
-    const p = products.find(x => x.id === item.id);
-    return sum + (p ? p.price * item.qty : 0);
-  }, 0);
+  const method = $('payment').value;
+  if (!method) {
+    $('checkout-message').textContent = 'Please choose a demo payment method.';
+    $('checkout-message').hidden = false;
+    return;
+  }
 
   const order = {
-    id: "DS-" + Date.now().toString().slice(-8),
-    date: new Date().toLocaleString(),
-    customer: form.get("name"),
-    email: form.get("email"),
-    address: form.get("address"),
-    payment: form.get("payment"),
-    paymentStatus: "TEST — NOT PAID",
-    total,
-    items: cart.map(item => {
-      const p = products.find(x => x.id === item.id);
+    orderNumber: 'DS-' + Date.now().toString().slice(-8),
+    name: $('customer-name').value.trim(),
+    email: $('customer-email').value.trim(),
+    address: $('customer-address').value.trim(),
+    paymentMethod: method,
+    items: cart.map(i => {
+      const p = products.find(p => p.id === i.id);
       return {
-        name: p.name,
-        qty: item.qty,
-        size: item.size || "M",
-        price: p.price
+        id: p.id, name: p.name, price: p.price,
+        size: i.size, qty: i.qty
       };
-    })
+    }),
+    total: cart.reduce((s,i) =>
+      s + products.find(p => p.id === i.id).price * i.qty, 0),
+    paymentStatus: 'TEST — NOT PAID',
+    createdAt: new Date().toISOString()
   };
 
-  const orders = JSON.parse(localStorage.getItem("dripOrders") || "[]");
-  orders.unshift(order);
-  localStorage.setItem("dripOrders", JSON.stringify(orders));
+  const orders = JSON.parse(localStorage.getItem('dripOrders') || '[]');
+  orders.push(order);
+  localStorage.setItem('dripOrders', JSON.stringify(orders));
 
   cart = [];
   saveCart();
   renderCart();
-  event.target.reset();
-  $("checkout-modal").classList.add("hidden");
+  $('checkout-dialog').close();
 
-  alert("Demo order saved. No payment was made.");
+  $('confirmation-text').textContent =
+    `Demo order ${order.orderNumber} saved using ${method}. ` +
+    `Total: ${money(order.total)}. This is not a real purchase.`;
+
+  $('confirmation-dialog').showModal();
+  $('checkout-form').reset();
 });
+
+$('confirmation-close').addEventListener('click', () =>
+  $('confirmation-dialog').close()
+);
 
 renderProducts();
 renderCart();
