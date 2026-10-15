@@ -1,53 +1,40 @@
-
-<!DOCTYPE html>
+ <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DRIP STREET | Admin</title>
-  <link rel="stylesheet" href="style.css">
+  <title>DRIP STREET — Demo Admin</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./admin.js" defer></script>
 </head>
 <body>
-<header>
-  <a class="logo" href="index.html">DRIP <span>STREET</span></a>
-  <nav><a href="index.html">Storefront</a></nav>
-</header>
+  <header class="header">
+    <a class="brand" href="index.html">DRIP<span>STREET</span></a>
+    <nav><a href="index.html#shop">Back to shop</a></nav>
+  </header>
 
-<main id="shop">
-  <p>ADMIN DEMO</p>
-  <h1>Order Dashboard</h1>
-  <p>Test orders only. This page is not protected by a secure login.</p>
+  <main class="section">
+    <p class="eyebrow">LOCAL DEMO DASHBOARD</p>
+    <h2>Demo <span style="color:var(--lime)">orders.</span></h2>
+    <p class="muted">
+      Orders are stored only in this browser. They are not shared online.
+    </p>
 
-  <h2>Recent Orders</h2>
-  <button id="refresh">Refresh Orders</button>
-  <div id="orders"></div>
-  <p id="no-orders">No orders yet. Place a test order in the shop first.</p>
-</main>
+    <div class="controls" style="margin-top:25px">
+      <button class="button lime" id="export-orders" type="button">
+        Export orders JSON ↓
+      </button>
+      <button class="button" id="clear-orders" type="button">
+        Clear demo orders
+      </button>
+    </div>
 
-<script>
-function loadOrders() {
-  const orders = JSON.parse(localStorage.getItem("dripOrders") || "[]");
+    <div id="admin-orders"></div>
+  </main>
 
-  document.getElementById("no-orders").hidden = orders.length > 0;
-
-  document.getElementById("orders").innerHTML = orders.map(order => `
-    <article class="product-card" style="padding:20px;margin:15px 0">
-      <h2>${order.id}</h2>
-      <p>${order.date}</p>
-      <p><strong>Customer:</strong> ${order.customer}</p>
-      <p><strong>Email:</strong> ${order.email}</p>
-      <p><strong>Address:</strong> ${order.address}</p>
-      <p><strong>Payment:</strong> ${order.payment}</p>
-      <p><strong>Payment status:</strong> ${order.paymentStatus}</p>
-      <p><strong>Items:</strong> ${order.items.map(i =>
-        `${i.name} × ${i.qty}`).join(", ")}</p>
-      <h3>Total: €${order.total.toFixed(2)}</h3>
-    </article>
-  `).join("");
-}
-
-document.getElementById("refresh").onclick = loadOrders;
-loadOrders();
-</script>
+  <footer class="footer">
+    <a class="brand" href="index.html">DRIP<span>STREET</span></a>
+    <p>DEMO ONLY — NOT A REAL PAYMENT SYSTEM</p>
+  </footer>
 </body>
 </html>
