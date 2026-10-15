@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#171813">
+  <meta name="theme-color" content="#10110d">
   <title>DRIP STREET — Wear Your Energy</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="app.js" defer></script>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./app.js" defer></script>
 </head>
 <body>
   <div class="announcement">
-    NEW SEASON DROP <span>• DEMO STORE — NO REAL PAYMENTS</span>
+    NEW SEASON DROP <span>✳ DEMO STORE — NO REAL PAYMENTS</span>
   </div>
 
   <header class="header">
     <a class="brand" href="index.html">DRIP<span>STREET</span></a>
     <nav>
-      <a href="#shop">Shop all</a>
+      <a href="#shop">Shop</a>
       <a href="#story">Our vibe</a>
       <a href="admin.html">Demo admin</a>
     </nav>
@@ -34,9 +34,7 @@
         <h1>YOUR STYLE.<br><em>YOUR RULES.</em></h1>
         <p>Streetwear built for wherever the day takes you.
           Find your next everyday favourite.</p>
-        <a class="button lime" href="#shop">
-          Explore the drop <b>↘</b>
-        </a>
+        <a class="button lime" href="#shop">Explore the drop ↘</a>
       </div>
       <span class="hero-note">DROP 001 / ALWAYS IN MOTION</span>
     </section>
@@ -57,9 +55,7 @@
 
       <div class="controls">
         <input id="search" type="search"
-          placeholder="Search the collection..."
-          aria-label="Search products">
-
+          placeholder="Search the collection..." aria-label="Search products">
         <select id="category-filter" aria-label="Filter category">
           <option value="All">All categories</option>
           <option>T-Shirts</option>
@@ -68,7 +64,6 @@
           <option>Shoes</option>
           <option>Accessories</option>
         </select>
-
         <select id="sort" aria-label="Sort products">
           <option value="featured">Sort: Featured</option>
           <option value="low">Price: low to high</option>
@@ -81,7 +76,6 @@
         <span id="results-count">24 pieces</span>
         <span>SELECT YOUR NEXT FAVOURITE ↘</span>
       </div>
-
       <div id="product-grid" class="product-grid"></div>
       <p id="no-results" class="empty" hidden>
         No pieces found. Try another search.
@@ -95,16 +89,14 @@
         <h2>Less rules.<br><span>More you.</span></h2>
         <p>We believe your clothes should feel like you.
           Keep it simple, make it yours, and show up with
-          confidence — every single day.</p>
-        <a href="#shop" class="text-link">
-          Find your everyday uniform ↗
-        </a>
+          confidence — every day.</p>
+        <a class="text-link" href="#shop">Find your everyday uniform ↗</a>
       </div>
       <div class="story-photo"></div>
     </section>
 
     <section class="demo-banner">
-      <b>ⓘ &nbsp; DEMO STORE — NO REAL MONEY</b>
+      <b>ⓘ DEMO STORE — NO REAL MONEY</b>
       <span>MB WAY, Multibanco, Visa/Mastercard and PayPal
         are simulated. No payment is taken.</span>
       <small>TEST MODE</small>
@@ -125,16 +117,12 @@
         <p class="eyebrow">YOUR SELECTION</p>
         <h2>Your bag <small id="drawer-count">(0)</small></h2>
       </div>
-      <button id="cart-close" class="close"
-        aria-label="Close bag" type="button">×</button>
+      <button id="cart-close" class="close" type="button">×</button>
     </div>
-
     <div id="cart-items" class="cart-items"></div>
-
     <div class="drawer-bottom">
       <div class="subtotal">
-        <span>Subtotal</span>
-        <strong id="cart-total">€0.00</strong>
+        <span>Subtotal</span><strong id="cart-total">€0.00</strong>
       </div>
       <p>Demo prices. Delivery not calculated.</p>
       <button id="checkout-open" class="button dark full" type="button">
@@ -148,14 +136,13 @@
 
   <dialog id="product-dialog" class="modal">
     <button class="close modal-x" data-close="product-dialog"
-      type="button" aria-label="Close">×</button>
+      type="button">×</button>
     <div id="product-detail"></div>
   </dialog>
 
   <dialog id="checkout-dialog" class="modal checkout">
     <button class="close modal-x" data-close="checkout-dialog"
-      type="button" aria-label="Close">×</button>
-
+      type="button">×</button>
     <p class="eyebrow">DEMO CHECKOUT</p>
     <h2>Almost <span>yours.</span></h2>
     <p class="muted">Use fictional details only. This is not a real purchase.</p>
@@ -189,10 +176,8 @@
       </div>
 
       <div class="subtotal">
-        <span>Order total</span>
-        <strong id="checkout-total">€0.00</strong>
+        <span>Order total</span><strong id="checkout-total">€0.00</strong>
       </div>
-
       <button class="button dark full" type="submit">
         Place demo order →
       </button>
@@ -202,7 +187,7 @@
 
   <dialog id="confirmation-dialog" class="modal confirm">
     <button class="close modal-x" data-close="confirmation-dialog"
-      type="button" aria-label="Close">×</button>
+      type="button">×</button>
     <div class="checkmark">✓</div>
     <p class="eyebrow">DEMO ORDER SAVED</p>
     <h2>You're all <span>set.</span></h2>
