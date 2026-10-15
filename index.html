@@ -1,134 +1,172 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DRIP STREET | Streetwear</title>
+  <meta name="description" content="Discover your style at DRIP STREET.">
   <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
 </head>
 <body>
 
-<header class="site-header">
-  <a href="#" class="logo">DRIP<span>STREET</span></a>
-  <nav>
-    <a href="#shop">Shop</a>
-    <a href="admin.html">Admin</a>
-    <button id="cart-open">Cart (<span id="cart-count">0</span>)</button>
-  </nav>
-</header>
+  <header class="site-header">
+    <a class="logo" href="index.html">DRIP<span>STREET</span></a>
+    <nav>
+      <a href="#shop">Shop</a>
+      <a href="admin.html">Demo Admin</a>
+    </nav>
+    <button id="cart-open" class="cart-button" type="button">
+      Cart <span id="cart-count">0</span>
+    </button>
+  </header>
 
-<section class="hero">
-  <p>NEW COLLECTION</p>
-  <h1>YOUR STYLE.<br>YOUR STREET.</h1>
-  <p>Discover your next favourite streetwear fit.</p>
-  <a class="hero-button" href="#shop">SHOP NOW</a>
-</section>
-
-<main id="shop" class="shop-section">
-  <div class="section-heading">
-    <div>
-      <p class="eyebrow">FIND YOUR FIT</p>
-      <h2>THE COLLECTION <span id="product-count">(24)</span></h2>
-    </div>
-    <input id="search" type="search" placeholder="Search products...">
-  </div>
-
-  <div class="shop-controls">
-    <div class="categories">
-      <button data-category="All" class="active">All</button>
-      <button data-category="T-Shirts">T-Shirts</button>
-      <button data-category="Hoodies">Hoodies</button>
-      <button data-category="Jeans & Trousers">Trousers</button>
-      <button data-category="Shoes">Shoes</button>
-      <button data-category="Accessories">Accessories</button>
-    </div>
-
-    <select id="sort" aria-label="Sort products">
-      <option value="default">Featured</option>
-      <option value="low">Price: low to high</option>
-      <option value="high">Price: high to low</option>
-      <option value="name">Name: A to Z</option>
-    </select>
-  </div>
-
-  <p id="empty-state" hidden>No products found. Try another search.</p>
-  <div id="products" class="products-grid"></div>
-</main>
-
-<footer>
-  <a href="#" class="logo">DRIP<span>STREET</span></a>
-  <p>Streetwear made for your everyday style.</p>
-  <p>© 2026 DRIP STREET — Demo store for learning purposes.</p>
-</footer>
-
-<div id="backdrop" class="backdrop hidden"></div>
-
-<aside id="cart-drawer" class="cart-drawer">
-  <div class="drawer-heading">
-    <h2>Your Cart</h2>
-    <button id="cart-close" aria-label="Close cart">✕</button>
-  </div>
-  <div id="cart-items"></div>
-  <div class="cart-footer">
-    <p>Total <strong id="cart-total">€0.00</strong></p>
-    <button id="checkout-open" class="primary-button">CHECKOUT DEMO</button>
-    <p class="demo-note">DEMO ONLY — NO REAL PAYMENT</p>
-  </div>
-</aside>
-
-<div id="product-modal" class="product-modal hidden">
-  <div class="product-modal-content">
-    <button id="product-modal-close" class="modal-close">✕ Close</button>
-    <div class="product-detail-layout">
-      <img id="detail-image" src="" alt="Product photo">
-      <div class="product-detail-info">
-        <p id="detail-category" class="eyebrow"></p>
-        <h2 id="detail-name"></h2>
-        <h3 id="detail-price"></h3>
-        <p id="detail-description"></p>
-        <label for="detail-size">Choose size:</label>
-        <select id="detail-size">
-          <option value="S">S</option>
-          <option value="M" selected>M</option>
-          <option value="L">L</option>
-          <option value="XL">XL</option>
-        </select>
-        <button id="detail-add" class="primary-button">ADD TO CART +</button>
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">NEW DROP · STREETWEAR</p>
+        <h1>Wear your<br><span>own energy.</span></h1>
+        <p>Fresh fits. Everyday comfort. Your style, your rules.</p>
+        <a class="button button-lime" href="#shop">Shop collection</a>
       </div>
-    </div>
-  </div>
-</div>
+      <div class="hero-image" role="img" aria-label="Streetwear fashion"></div>
+      <div class="hero-stamp">DRIP<br>YOUR<br>WAY.</div>
+    </section>
 
-<div id="checkout-modal" class="checkout-modal hidden">
-  <div class="checkout-content">
-    <button id="checkout-close" class="modal-close">✕ Close</button>
-    <p class="eyebrow">DEMO CHECKOUT</p>
-    <h2>Complete Test Order</h2>
-    <p>Total: <strong id="checkout-total">€0.00</strong></p>
-    <p class="demo-warning">TEST ONLY. NO MONEY WILL BE CHARGED.</p>
+    <section class="shop-section" id="shop">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">THE COLLECTION</p>
+          <h2>Find your fit.</h2>
+        </div>
+        <p class="muted">Streetwear for every day.</p>
+      </div>
+
+      <div class="shop-controls">
+        <input id="search" type="search" placeholder="Search clothes..." aria-label="Search products">
+
+        <select id="category-filter" aria-label="Filter products">
+          <option value="All">All categories</option>
+          <option value="T-Shirts">T-Shirts</option>
+          <option value="Hoodies">Hoodies</option>
+          <option value="Trousers">Trousers</option>
+          <option value="Shoes">Shoes</option>
+          <option value="Accessories">Accessories</option>
+        </select>
+
+        <select id="sort" aria-label="Sort products">
+          <option value="featured">Featured</option>
+          <option value="low">Price: low to high</option>
+          <option value="high">Price: high to low</option>
+          <option value="name">Name: A to Z</option>
+        </select>
+      </div>
+
+      <p id="results-count" class="muted results-count"></p>
+      <div id="product-grid" class="product-grid"></div>
+      <p id="no-results" class="empty-state" hidden>
+        No products found. Try another search.
+      </p>
+    </section>
+
+    <section class="demo-banner">
+      <strong>DEMO SHOP ONLY</strong>
+      <span>No real payments are processed. No money will be charged.</span>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="logo" href="index.html">DRIP<span>STREET</span></a>
+    <p>DRIP STREET · Streetwear concept</p>
+    <p>Demo shop — no real payments.</p>
+  </footer>
+
+  <div id="overlay" class="overlay" hidden></div>
+
+  <aside id="cart-drawer" class="drawer" aria-label="Shopping cart" aria-hidden="true">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">YOUR SELECTION</p>
+        <h2>Your cart</h2>
+      </div>
+      <button class="icon-button" id="cart-close" type="button" aria-label="Close cart">×</button>
+    </div>
+
+    <div id="cart-items" class="cart-items"></div>
+
+    <div class="cart-bottom">
+      <div class="total-line">
+        <span>Subtotal</span>
+        <strong id="cart-total">€0.00</strong>
+      </div>
+      <p class="muted small">Demo prices only.</p>
+      <button id="checkout-open" class="button button-lime full-width" type="button">
+        Go to demo checkout
+      </button>
+    </div>
+  </aside>
+
+  <dialog id="product-dialog" class="modal">
+    <button class="icon-button modal-close" data-close="product-dialog" type="button" aria-label="Close">×</button>
+    <div id="product-detail" class="product-detail"></div>
+  </dialog>
+
+  <dialog id="checkout-dialog" class="modal checkout-modal">
+    <button class="icon-button modal-close" data-close="checkout-dialog" type="button" aria-label="Close">×</button>
+
+    <p class="eyebrow">TEST MODE</p>
+    <h2>Demo checkout</h2>
+    <p class="muted">
+      This checkout is only a demonstration. Do not enter real banking details.
+    </p>
 
     <form id="checkout-form">
       <label for="customer-name">Name</label>
-      <input id="customer-name" name="name" required>
+      <input id="customer-name" name="customerName" autocomplete="name" maxlength="100" required placeholder="Your name">
 
       <label for="customer-email">Email</label>
-      <input id="customer-email" name="email" type="email" required>
+      <input id="customer-email" name="customerEmail" type="email" autocomplete="email" maxlength="150" required placeholder="you@example.com">
 
-      <label for="customer-address">Demo delivery address</label>
-      <textarea id="customer-address" name="address" required></textarea>
+      <label for="customer-address">Delivery address (demo)</label>
+      <textarea id="customer-address" name="customerAddress" maxlength="250" required placeholder="Use a demo address"></textarea>
 
-      <label for="payment-method">Demo payment method</label>
-      <select id="payment-method" name="payment" required>
-        <option value="Demo card">Demo card (no charge)</option>
-        <option value="Demo MB WAY">Demo MB WAY (no charge)</option>
-        <option value="Demo PayPal">Demo PayPal (no charge)</option>
+      <label for="payment">Choose payment method</label>
+      <select id="payment" name="payment" required>
+        <option value="">Select a payment method</option>
+        <option value="MB WAY">MB WAY (Demo)</option>
+        <option value="Multibanco">Multibanco (Demo)</option>
+        <option value="Visa / Mastercard">Visa / Mastercard (Demo)</option>
+        <option value="PayPal">PayPal (Demo)</option>
       </select>
 
-      <button class="primary-button" type="submit">PLACE TEST ORDER</button>
-    </form>
-  </div>
-</div>
+      <div class="demo-payment-note">
+        <strong>TEST — NOT PAID</strong><br>
+        No real payment is taken. Never enter a card number, PIN, banking password or PayPal login.
+      </div>
 
-<script src="app.js"></script>
+      <div class="total-line checkout-total">
+        <span>Order total</span>
+        <strong id="checkout-total">€0.00</strong>
+      </div>
+
+      <button class="button button-lime full-width" type="submit">
+        Place test order
+      </button>
+    </form>
+
+    <div id="checkout-message" class="checkout-message" role="status" hidden></div>
+  </dialog>
+
+  <dialog id="confirmation-dialog" class="modal confirmation-modal">
+    <button class="icon-button modal-close" data-close="confirmation-dialog" type="button" aria-label="Close">×</button>
+    <p class="eyebrow">ORDER SAVED</p>
+    <h2>Test order complete!</h2>
+    <p id="confirmation-text"></p>
+    <div class="demo-payment-note">TEST — NOT PAID. No money was charged.</div>
+    <button id="confirmation-close" class="button button-lime full-width" type="button">
+      Back to shop
+    </button>
+  </dialog>
+
 </body>
 </html>
