@@ -12,7 +12,15 @@ const products = [
   {id:9,name:'Everyday Zip Hoodie',category:'Hoodies',price:46.99,tag:'CORE',image:photo('photo-1576566588028-4147f3842f27'),desc:'An easy zip layer to throw on and head out.'},
   {id:10,name:'Street Crew Sweatshirt',category:'Hoodies',price:39.99,tag:'CORE',image:photo('photo-1554568218-0f1715e72254'),desc:'A clean crewneck for effortless everyday outfits.'},
   {id:11,name:'Minimal Pullover',category:'Hoodies',price:42.99,tag:'NEW',image:photo('photo-1620799140408-edc6dcb6d633'),desc:'Simple shape, relaxed feel and easy layering.'},
-  {id:12,name:'Heavy Fleece Hoodie',category:'Hoodies',price:54.99,tag:'LIMITED',image:photo('photo-1565693413579-8a3a0a7b9f7e'),desc:'A heavier layer for a cosy streetwear look.'},
+  {
+  id:12,
+  name:'Heavy Fleece Hoodie',
+  category:'Hoodies',
+  price:54.99,
+  tag:'LIMITED',
+  image:photo('photo-1556821840-3a63f95609a7'),
+  desc:'A heavier layer for a cosy streetwear look.'
+},
   {id:13,name:'Relaxed Cargo Pants',category:'Trousers',price:39.99,tag:'BESTSELLER',image:photo('photo-1542272604-787c3835535d'),desc:'Utility-inspired trousers with a relaxed everyday fit.'},
   {id:14,name:'Straight Leg Denim',category:'Trousers',price:44.99,tag:'CORE',image:photo('photo-1541099649105-f69ad21f3246'),desc:'Classic denim designed to pair with your favourite tees.'},
   {id:15,name:'Utility Track Pants',category:'Trousers',price:34.99,tag:'NEW',image:photo('photo-1473966968600-fa801b869a1a'),desc:'Sport-inspired track pants for casual days.'},
