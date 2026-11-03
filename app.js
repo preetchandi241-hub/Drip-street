@@ -1,128 +1,252 @@
-const products = [
-  // HOODIES — YOUR FOUR UPLOADED PHOTOS
-  {
-    id: 1,
-    name: "Gothic Washed Zip Hoodie",
-    category: "Hoodies",
-    price: 49.99,
-    tag: "NEW",
-    color: "Black",
-    image: "images/hoodie-1.webp",
-    description: "Washed black zip hoodie with a gothic graphic."
-  },
-  {
-    id: 2,
-    name: "Signature Black Hoodie",
-    category: "Hoodies",
-    price: 39.99,
-    tag: "POPULAR",
-    color: "Black",
-    image: "images/hoodie-2.webp",
-    description: "Black streetwear hoodie with a white logo."
-  },
-  {
-    id: 3,
-    name: "Tribal Graphic Hoodie",
-    category: "Hoodies",
-    price: 44.99,
-    tag: "TRENDING",
-    color: "Black",
-    image: "images/hoodie-3.webp",
-    description: "Black hoodie featuring a bold tribal graphic."
-  },
-  {
-    id: 4,
-    name: "Dark Art Hoodie",
-    category: "Hoodies",
-    price: 54.99,
-    tag: "PREMIUM",
-    color: "Black",
-    image: "images/hoodie-4.webp",
-    description: "Black hoodie with detailed gothic artwork."
-  },
-
-  // T-SHIRTS
-  {
-    id: 5,
-    name: "Essential Oversized Tee",
-    category: "T-Shirts",
-    price: 24.99,
-    tag: "BESTSELLER",
-    color: "White",
-    image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=85",
-    description: "Relaxed oversized everyday T-shirt."
-  },
-  {
-    id: 6,
-    name: "Street Graphic Tee",
-    category: "T-Shirts",
-    price: 27.99,
-    tag: "NEW",
-    color: "Black",
-    image: "https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=800&q=85",
-    description: "A modern graphic tee for streetwear outfits."
-  },
-  {
-    id: 7,
-    name: "Classic White Tee",
-    category: "T-Shirts",
-    price: 19.99,
-    tag: "",
-    color: "White",
-    image: "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=800&q=85",
-    description: "A simple white T-shirt for everyday wear."
-  },
-  {
-    id: 8,
-    name: "Urban Oversized Tee",
-    category: "T-Shirts",
-    price: 29.99,
-    tag: "TRENDING",
-    color: "Grey",
-    image: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=800&q=85",
-    description: "Relaxed streetwear-inspired oversized tee."
-  },
-
-  // PANTS
-  {
-    id: 9,
-    name: "Urban Cargo Pants",
-    category: "Pants",
-    price: 44.99,
-    tag: "POPULAR",
-    color: "Khaki",
-    image: "https://images.unsplash.com/photo-1517438476312-10d79c077509?auto=format&fit=crop&w=800&q=85",
-    description: "Relaxed cargo pants for everyday outfits."
-  },
-  {
-    id: 10,
-    name: "Classic Denim Jeans",
-    category: "Pants",
-    price: 49.99,
-    tag: "NEW",
-    color: "Blue",
-    image: "https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=800&q=85",
-    description: "Classic denim jeans with a relaxed look."
-  },
-  // ACCESSORIES
-  {
-    id: 11,
-    name: "Streetwear Cap",
-    category: "Accessories",
-    price: 19.99,
-    tag: "NEW",
-    color: "Black",
-    image: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=800&q=85",
-    description: "A classic black cap to complete your outfit."
-  },
-  {
-    id: 12,
-    name: "Everyday Crossbody Bag",
-    category: "Accessories",
-    price: 29.99,
-    tag: "",
-    color: "Black",
-    image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=85",
-    description: "A practical bag for your everyday essentials."
+const $ = (selector) => document.querySelector(selector);
+const productGrid = $("#productGrid");
+const emptyMessage = $("#emptyMessage");
+const searchInput = $("#searchInput");
+const sortSelect = $("#sortSelect");
+const cartDrawer = $("#cartDrawer");
+const overlay = $("#overlay");
+const productModal = $("#productModal");
+const checkoutModal = $("#checkoutModal");
+let selectedCategory = "All";
+let cart = JSON.parse(localStorage.getItem("dripCart") || "[]");
+function money(amount) {
+  return new Intl.NumberFormat("en-IE", {
+    style: "currency",
+    currency: "EUR"
+  }).format(amount);
+}
+function saveCart() {
+  localStorage.setItem("dripCart", JSON.stringify(cart));
+  updateCart();
+}
+function renderProducts() {
+  const search = searchInput.value.trim().toLowerCase();
+  let visibleProducts = products.filter(product => {
+    const categoryMatch =
+      selectedCategory === "All" ||
+      product.category === selectedCategory;
+    const searchMatch =
+      product.name.toLowerCase().includes(search) ||
+      product.category.toLowerCase().includes(search) ||
+      product.color.toLowerCase().includes(search);
+    return categoryMatch && searchMatch;
+  });
+  if (sortSelect.value === "low") {
+    visibleProducts.sort((a, b) => a.price - b.price);
+  } else if (sortSelect.value === "high") {
+    visibleProducts.sort((a, b) => b.price - a.price);
+  } else if (sortSelect.value === "name") {
+    visibleProducts.sort((a, b) => a.name.localeCompare(b.name));
   }
-];
+  productGrid.innerHTML = visibleProducts.map(product => `
+    <article class="product-card">
+      <div class="product-image-wrap" data-open="${product.id}">
+        <img class="product-image"
+             src="${product.image}"
+             alt="${product.name}"
+             loading="lazy"
+             onerror="this.style.opacity='0.2'">
+        ${product.tag ? `<span class="product-tag">${product.tag}</span>` : ""}
+        <button class="quick-add" data-add="${product.id}">
+          QUICK ADD +
+        </button>
+      </div>
+      <div class="product-info" data-open="${product.id}">
+        <div>
+          <h3>${product.name}</h3>
+          <p>${product.category} · ${product.color}</p>
+        </div>
+        <span class="product-price">${money(product.price)}</span>
+      </div>
+    </article>
+  `).join("");
+  emptyMessage.hidden = visibleProducts.length > 0;
+}
+function updateCart() {
+  const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+  $("#cartCount").textContent = count;
+  $("#cartItems").innerHTML = cart.length
+    ? cart.map(item => {
+        const product = products.find(p => p.id === item.id);
+        if (!product) return "";
+        return `
+          <div class="cart-row">
+            <img src="${product.image}" alt="${product.name}">
+            <div>
+              <h4>${product.name}</h4>
+              <p>Size: ${item.size} · Qty: ${item.quantity}</p>
+              <strong>${money(product.price * item.quantity)}</strong><br>
+              <button class="remove-item"
+                data-remove="${item.id}"
+                data-size="${item.size}">Remove</button>
+            </div>
+          </div>
+        `;
+      }).join("")
+    : '<p>Your bag is empty.</p>';
+  const total = cart.reduce((sum, item) => {
+    const product = products.find(p => p.id === item.id);
+    return sum + (product ? product.price * item.quantity : 0);
+  }, 0);
+  $("#cartSubtotal").textContent = money(total);
+}
+function addToCart(id, size = "M") {
+  const existing = cart.find(item =>
+    item.id === id && item.size === size
+  );
+  if (existing) {
+    existing.quantity++;
+  } else {
+    cart.push({ id, size, quantity: 1 });
+  }
+  saveCart();
+  openCart();
+}
+function removeFromCart(id, size) {
+  cart = cart.filter(item =>
+    !(item.id === id && item.size === size)
+  );
+  saveCart();
+}
+function openCart() {
+  cartDrawer.classList.add("open");
+  overlay.classList.add("show");
+}
+function closePanels() {
+  cartDrawer.classList.remove("open");
+  productModal.classList.remove("open");
+  checkoutModal.classList.remove("open");
+  overlay.classList.remove("show");
+}
+function openProduct(id) {
+  const product = products.find(p => p.id === id);
+  if (!product) return;
+  $("#productDetails").innerHTML = `
+    <div class="product-detail-layout">
+      <img src="${product.image}" alt="${product.name}">
+      <div class="product-detail-info">
+        <p class="eyebrow">${product.category.toUpperCase()}</p>
+        <h2>${product.name}</h2>
+        <div class="detail-price">${money(product.price)}</div>
+        <p>${product.description}</p>
+        <p>Color: ${product.color}</p>
+        <label for="productSize">Select size</label>
+        <select id="productSize">
+          <option value="S">Small (S)</option>
+          <option value="M" selected>Medium (M)</option>
+          <option value="L">Large (L)</option>
+          <option value="XL">Extra Large (XL)</option>
+        </select>
+        <button class="primary-button" id="addProductButton">
+          ADD TO BAG +
+        </button>
+      </div>
+    </div>
+  `;
+  productModal.classList.add("open");
+  overlay.classList.add("show");
+  $("#addProductButton").addEventListener("click", () => {
+    const size = $("#productSize").value;
+    closePanels();
+    addToCart(id, size);
+  });
+}
+function openCheckout() {
+  if (!cart.length) {
+    alert("Your bag is empty!");
+    return;
+  }
+  cartDrawer.classList.remove("open");
+  checkoutModal.classList.add("open");
+  overlay.classList.add("show");
+}
+function placeDemoOrder() {
+  const name = $("#customerName").value.trim();
+  if (!name) {
+    alert("Please enter your name.");
+    return;
+  }
+  const total = cart.reduce((sum, item) => {
+    const product = products.find(p => p.id === item.id);
+    return sum + (product ? product.price * item.quantity : 0);
+  }, 0);
+  const order = {
+    id: "DS-" + Date.now(),
+    customer: name,
+    payment: $("#paymentMethod").value,
+    items: cart,
+    total,
+    date: new Date().toISOString(),
+    status: "Demo order"
+  };
+  const orders = JSON.parse(localStorage.getItem("dripOrders") || "[]");
+  orders.push(order);
+  localStorage.setItem("dripOrders", JSON.stringify(orders));
+  cart = [];
+  saveCart();
+  $("#customerName").value = "";
+  closePanels();
+  alert("Thank you, " + name + "! Demo order saved.");
+}
+// CATEGORY FILTER
+$("#categories").addEventListener("click", event => {
+  const button = event.target.closest("[data-category]");
+  if (!button) return;
+  selectedCategory = button.dataset.category;
+  document.querySelectorAll(".category").forEach(category => {
+    category.classList.toggle("active", category === button);
+  });
+  renderProducts();
+});
+// PRODUCT CLICK
+productGrid.addEventListener("click", event => {
+  const addButton = event.target.closest("[data-add]");
+
+  if (addButton) {
+    event.stopPropagation();
+    addToCart(Number(addButton.dataset.add), "M");
+    return;
+  }
+  const target = event.target.closest("[data-open]");
+  if (target) openProduct(Number(target.dataset.open));
+});
+// REMOVE FROM CART
+$("#cartItems").addEventListener("click", event => {
+  const button = event.target.closest("[data-remove]");
+  if (!button) return;
+  removeFromCart(
+    Number(button.dataset.remove),
+    button.dataset.size
+  );
+});
+// SEARCH AND SORT
+searchInput.addEventListener("input", renderProducts);
+sortSelect.addEventListener("change", renderProducts);
+// BUTTONS
+$("#cartToggle").addEventListener("click", openCart);
+$("#closeCart").addEventListener("click", closePanels);
+$("#closeProduct").addEventListener("click", closePanels);
+$("#closeCheckout").addEventListener("click", closePanels);
+$("#checkoutButton").addEventListener("click", openCheckout);
+$("#placeOrder").addEventListener("click", placeDemoOrder);
+overlay.addEventListener("click", closePanels);
+$("#searchToggle").addEventListener("click", () => {
+  $("#shop").scrollIntoView({ behavior: "smooth" });
+  searchInput.focus();
+});
+$("#menuToggle").addEventListener("click", () => {
+  $("#mainNav").classList.toggle("open");
+});
+
+document.querySelectorAll(".main-nav a").forEach(link => {
+  link.addEventListener("click", () => {
+    $("#mainNav").classList.remove("open");
+  });
+});
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") closePanels();
+});
+$("#year").textContent = new Date().getFullYear();
+// START STORE
+renderProducts();
+updateCart();
