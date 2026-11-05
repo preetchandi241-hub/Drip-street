@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -11,17 +11,16 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="announcement">NEW SEASON. NEW ENERGY. FREE SHIPPING ON ORDERS OVER €75.</div>
-
+  <div class="announcement">
+    NEW SEASON. NEW ENERGY. FREE SHIPPING ON ORDERS OVER €75.
+  </div>
   <header class="site-header">
     <a class="logo" href="#home">DRIP<span>STREET</span><i>.</i></a>
-
     <nav class="main-nav" id="mainNav">
       <a href="#home">Home</a>
       <a href="#shop">Shop</a>
       <a href="#about">Our story</a>
     </nav>
-
     <div class="header-actions">
       <button class="icon-button" id="searchToggle" aria-label="Open search">⌕</button>
       <button class="cart-button" id="cartToggle" aria-label="Open shopping cart">
@@ -30,42 +29,61 @@
       <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
     </div>
   </header>
-
   <main>
     <section class="hero" id="home">
       <div class="hero-image"></div>
       <div class="hero-content">
         <p class="eyebrow">THE NEW STREETWEAR COLLECTION</p>
         <h1>MAKE YOUR<br><span>OWN RULES.</span></h1>
-        <p class="hero-copy">Everyday essentials. Unmistakable style. Find your next favorite fit.</p>
-        <a class="primary-button" href="#shop">SHOP THE COLLECTION <span>↗</span></a>
+        <p class="hero-copy">
+          Everyday essentials. Unmistakable style.
+          Find your next favorite fit.
+        </p>
+        <a class="primary-button" href="#shop">
+          SHOP THE COLLECTION <span>↗</span>
+        </a>
       </div>
       <div class="hero-index">DS — 001 / NEW SEASON</div>
     </section>
-
     <section class="ticker" aria-label="Brand message">
-      <div>BUILT FOR EVERY DAY <span>✳</span> OWN YOUR STYLE <span>✳</span> STREET CULTURE <span>✳</span> BUILT FOR EVERY DAY <span>✳</span></div>
+      <div>
+        BUILT FOR EVERY DAY
+        <span>✳</span>
+        OWN YOUR STYLE
+        <span>✳</span>
+        STREET CULTURE
+        <span>✳</span>
+        BUILT FOR EVERY DAY
+        <span>✳</span>
+      </div>
     </section>
-
     <section class="shop-section" id="shop">
       <div class="section-heading">
         <div>
           <p class="eyebrow">FIND YOUR NEXT FIT</p>
           <h2>THE COLLECTION<span>.</span></h2>
         </div>
-        <p class="section-note">Fresh looks for wherever the day takes you.</p>
+        <p class="section-note">
+          Fresh looks for wherever the day takes you.
+        </p>
       </div>
-
       <div class="shop-tools">
+        <!-- PRODUCT CATEGORIES -->
         <div class="category-list" id="categories">
           <button class="category active" data-category="All">All</button>
           <button class="category" data-category="T-Shirts">T-Shirts</button>
           <button class="category" data-category="Hoodies">Hoodies</button>
-          <button class="category" data-category="Pants">Pants</button>
+          <button class="category" data-category="Trousers">Trousers</button>
+          <button class="category" data-category="Shoes">Shoes</button>
           <button class="category" data-category="Accessories">Accessories</button>
         </div>
         <div class="shop-controls">
-          <input id="searchInput" type="search" placeholder="Search products..." aria-label="Search products">
+          <input
+            id="searchInput"
+            type="search"
+            placeholder="Search products..."
+            aria-label="Search products"
+          >
           <select id="sortSelect" aria-label="Sort products">
             <option value="featured">Featured</option>
             <option value="low">Price: low to high</option>
@@ -74,59 +92,111 @@
           </select>
         </div>
       </div>
-
+      <!-- PRODUCTS WILL APPEAR HERE -->
       <div class="product-grid" id="productGrid"></div>
-      <p class="empty-message" id="emptyMessage" hidden>No products found. Try another search.</p>
+      <p class="empty-message" id="emptyMessage" hidden>
+        No products found. Try another search.
+      </p>
     </section>
-
     <section class="feature-banner" id="about">
       <div class="feature-photo"></div>
       <div class="feature-content">
         <p class="eyebrow">MORE THAN JUST CLOTHES</p>
         <h2>YOUR STYLE.<br>YOUR STORY.</h2>
-        <p>DRIP STREET is about confidence, individuality, and expressing yourself. Wear what feels like you.</p>
-        <a href="#shop" class="text-link">EXPLORE THE COLLECTION ↗</a>
+        <p>
+          DRIP STREET is about confidence, individuality,
+          and expressing yourself. Wear what feels like you.
+        </p>
+        <a href="#shop" class="text-link">
+          EXPLORE THE COLLECTION ↗
+        </a>
       </div>
     </section>
-
     <section class="values">
-      <div><span>01</span><h3>EVERYDAY STYLE</h3><p>Easy pieces for everyday outfits.</p></div>
-      <div><span>02</span><h3>YOUR IDENTITY</h3><p>Wear your look with confidence.</p></div>
-      <div><span>03</span><h3>STREET CULTURE</h3><p>Inspired by the streets and beyond.</p></div>
+      <div>
+        <span>01</span>
+        <h3>EVERYDAY STYLE</h3>
+        <p>Easy pieces for everyday outfits.</p>
+      </div>
+      <div>
+        <span>02</span>
+        <h3>YOUR IDENTITY</h3>
+        <p>Wear your look with confidence.</p>
+      </div>
+      <div>
+        <span>03</span>
+        <h3>STREET CULTURE</h3>
+        <p>Inspired by the streets and beyond.</p>
+      </div>
     </section>
   </main>
-
   <footer class="site-footer">
-    <a class="logo footer-logo" href="#home">DRIP<span>STREET</span><i>.</i></a>
+    <a class="logo footer-logo" href="#home">
+      DRIP<span>STREET</span><i>.</i>
+    </a>
     <p>WEAR YOUR IDENTITY.</p>
-    <small>© <span id="year"></span> DRIP STREET. School project demonstration store.</small>
+    <small>
+      © <span id="year"></span> DRIP STREET.
+      School project demonstration store.
+    </small>
   </footer>
-
+  <!-- OVERLAY -->
   <div class="overlay" id="overlay"></div>
-
+  <!-- SHOPPING CART -->
   <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart">
     <div class="drawer-heading">
-      <div><p class="eyebrow">YOUR SELECTION</p><h2>YOUR BAG</h2></div>
-      <button class="close-button" id="closeCart" aria-label="Close cart">×</button>
+      <div>
+        <p class="eyebrow">YOUR SELECTION</p>
+        <h2>YOUR BAG</h2>
+      </div>
+      <button class="close-button" id="closeCart" aria-label="Close cart">
+        ×
+      </button>
     </div>
     <div class="cart-items" id="cartItems"></div>
     <div class="cart-bottom">
-      <div class="subtotal"><span>Subtotal</span><strong id="cartSubtotal">€0.00</strong></div>
-      <p class="demo-note">Demo checkout only. No real payment will be taken.</p>
-      <button class="primary-button checkout-button" id="checkoutButton">CONTINUE TO CHECKOUT ↗</button>
+      <div class="subtotal">
+        <span>Subtotal</span>
+        <strong id="cartSubtotal">€0.00</strong>
+      </div>
+      <p class="demo-note">
+        Demo checkout only. No real payment will be taken.
+      </p>
+      <button class="primary-button checkout-button" id="checkoutButton">
+        CONTINUE TO CHECKOUT ↗
+      </button>
     </div>
   </aside>
-
-  <div class="product-modal" id="productModal" role="dialog" aria-modal="true" aria-label="Product details">
-    <button class="close-button modal-close" id="closeProduct" aria-label="Close product">×</button>
+  <!-- PRODUCT DETAILS -->
+  <div
+    class="product-modal"
+    id="productModal"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Product details"
+  >
+    <button class="close-button modal-close" id="closeProduct" aria-label="Close product">
+      ×
+    </button>
     <div id="productDetails"></div>
   </div>
-
-  <div class="checkout-modal" id="checkoutModal" role="dialog" aria-modal="true" aria-label="Demo checkout">
-    <button class="close-button modal-close" id="closeCheckout" aria-label="Close checkout">×</button>
+  <!-- CHECKOUT -->
+  <div
+    class="checkout-modal"
+    id="checkoutModal"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Demo checkout"
+  >
+    <button class="close-button modal-close" id="closeCheckout" aria-label="Close checkout">
+      ×
+    </button>
     <p class="eyebrow">DEMO STORE</p>
     <h2>CHECKOUT</h2>
-    <p>This is a school-project demonstration. No real payment or order will be processed.</p>
+    <p>
+      This is a school-project demonstration.
+      No real payment or order will be processed.
+    </p>
     <label for="customerName">Your name</label>
     <input id="customerName" type="text" placeholder="Enter your name">
     <label for="paymentMethod">Demo payment method</label>
@@ -136,9 +206,11 @@
       <option>Visa / Mastercard (demo)</option>
       <option>PayPal (demo)</option>
     </select>
-    <button class="primary-button checkout-button" id="placeOrder">PLACE DEMO ORDER</button>
+    <button class="primary-button checkout-button" id="placeOrder">
+      PLACE DEMO ORDER
+    </button>
   </div>
-
+  <!-- JAVASCRIPT -->
   <script src="app.js"></script>
 </body>
 </html>
