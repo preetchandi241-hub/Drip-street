@@ -7,7 +7,7 @@ const products = [
   {id:13,name:"Vintage Grey Hoodie",category:"Hoodies",price:42.99,tag:"NEW",image:"images/Hoodie 5.webp",desc:"Vintage washed oversized grey hoodie."},
   {id:14,name:"Urban Shadow Hoodie",category:"Hoodies",price:47.99,tag:"POPULAR",image:"images/Hoodie 6.webp",desc:"Black hoodie with urban-inspired graphics."},
   {id:15,name:"Minimal Cream Hoodie",category:"Hoodies",price:44.99,tag:"CORE",image:"images/Hoodie 7.webp",desc:"Clean and comfortable cream oversized hoodie."},
-  {id:16,name:"Red Flame Hoodie",category:"Hoodies",price:49.99,tag:"LIMITED",image:"images/Hoodie 8.webp",desc:"Bold red flame graphic streetwear hoodie."},
+  {id:16,name:"Red Flame Hoodie",category:"Hoodies",price:49.99,tag:"LIMITED",image:"images/Hoodie 8.webp",desc:"Bold red flame graphic streetwear hoodie."},  
   // T-SHIRTS (8)
   {id:5,name:"Essential Oversized Tee",category:"T-Shirts",price:19.99,tag:"CORE",image:"images/t-shirt 1.webp",desc:"Everyday oversized black T-shirt."},
   {id:6,name:"White Graphic Tee",category:"T-Shirts",price:24.99,tag:"NEW",image:"images/t-shirt 2.webp",desc:"White tee with original streetwear artwork."},
@@ -16,7 +16,7 @@ const products = [
   {id:17,name:"Vintage Black Tee",category:"T-Shirts",price:21.99,tag:"POPULAR",image:"images/t-shirt 5.webp",desc:"Vintage washed black oversized T-shirt."},
   {id:18,name:"Angel Graphic Tee",category:"T-Shirts",price:25.99,tag:"NEW",image:"images/t-shirt 6.webp",desc:"Original angel-inspired graphic T-shirt."},
   {id:19,name:"Oversized Brown Tee",category:"T-Shirts",price:22.99,tag:"CORE",image:"images/t-shirt 7.webp",desc:"Relaxed oversized brown everyday T-shirt."},
-  {id:20,name:"Skull Print Tee",category:"T-Shirts",price:26.99,tag:"LIMITED",image:"images/t-shirt 8.webp",desc:"Dark skull artwork streetwear T-shirt."},
+  {id:20,name:"Skull Print Tee",category:"T-Shirts",price:26.99,tag:"LIMITED",image:"images/t-shirt 8.webp",desc:"Dark skull artwork streetwear T-shirt."}, 
   // TROUSERS (4)
   {id:9,name:"Black Cargo Pants",category:"Trousers",price:39.99,tag:"POPULAR",image:"images/Trousers 1.webp",desc:"Relaxed fit black cargo pants."},
   {id:10,name:"Blue Denim Jeans",category:"Trousers",price:44.99,tag:"CORE",image:"images/Trousers 2.webp",desc:"Classic relaxed fit blue denim jeans."},
@@ -30,6 +30,7 @@ const products = [
 ];
 let cart = [];
 let currentCategory = "All";
+// DOM Elements
 const productGrid = document.getElementById("productGrid");
 const emptyMessage = document.getElementById("emptyMessage");
 const searchInput = document.getElementById("searchInput");
@@ -45,7 +46,17 @@ const cartSubtotal = document.getElementById("cartSubtotal");
 const menuToggle = document.getElementById("menuToggle");
 const mainNav = document.getElementById("mainNav");
 const yearSpan = document.getElementById("year");
+
+// Checkout Elements
+const checkoutButton = document.getElementById("checkoutButton");
+const checkoutModal = document.getElementById("checkoutModal");
+const closeCheckout = document.getElementById("closeCheckout");
+const placeOrderButton = document.getElementById("placeOrder");
+const customerNameInput = document.getElementById("customerName");
+const paymentMethodSelect = document.getElementById("paymentMethod");
+
 if (yearSpan) yearSpan.textContent = new Date().getFullYear();
+
 function renderProducts() {
   let filtered = products.filter(product => {
     const matchesCategory = currentCategory === "All" || product.category === currentCategory;
@@ -89,6 +100,7 @@ function renderProducts() {
 window.addToCart = function(id) {
   const product = products.find(p => p.id === id);
   if (!product) return;
+  
   const existingItem = cart.find(item => item.id === id);
   if (existingItem) {
     existingItem.qty += 1;
@@ -102,9 +114,11 @@ function updateCartUI() {
   cartItemsContainer.innerHTML = "";
   let total = 0;
   let count = 0;
+
   cart.forEach(item => {
     total += item.price * item.qty;
     count += item.qty;
+
     const row = document.createElement("div");
     row.className = "cart-row";
     row.innerHTML = `
@@ -133,9 +147,41 @@ function closeCartDrawer() {
   cartDrawer.classList.remove("open");
   overlay.classList.remove("show");
 }
+// Checkout Modal Logic
+function openCheckout() {
+  if (cart.length === 0) {
+    alert("Your shopping bag is empty! Add products first.");
+    return;
+  }
+  closeCartDrawer();
+  checkoutModal.classList.add("open");
+  overlay.classList.add("show");
+}
+function closeCheckoutModal() {
+  checkoutModal.classList.remove("open");
+  overlay.classList.remove("show");
+}
+function handlePlaceOrder() {
+  const customerName = customerNameInput.value.trim() || "Customer";
+  const selectedMethod = paymentMethodSelect.value;
+
+  alert(`Thank you, ${customerName}!\n\nYour demo order has been placed successfully using ${selectedMethod}.\n(This is a school project demo - no payment was charged).`);
+  // Clear cart and close modal
+  cart = [];
+  updateCartUI();
+  customerNameInput.value = "";
+  closeCheckoutModal();
+}
+// Event Listeners
 cartToggle.addEventListener("click", openCart);
 closeCart.addEventListener("click", closeCartDrawer);
-overlay.addEventListener("click", closeCartDrawer);
+overlay.addEventListener("click", () => {
+  closeCartDrawer();
+  closeCheckoutModal();
+});
+checkoutButton.addEventListener("click", openCheckout);
+closeCheckout.addEventListener("click", closeCheckoutModal);
+placeOrderButton.addEventListener("click", handlePlaceOrder);
 categoryButtons.forEach(btn => {
   btn.addEventListener("click", () => {
     categoryButtons.forEach(b => b.classList.remove("active"));
